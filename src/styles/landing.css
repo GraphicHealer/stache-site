@@ -302,6 +302,21 @@ body {
 	text-align: center;
 }
 
+/* ---------- wrap-up ---------- */
+
+.wrapup {
+	text-align: center;
+	padding: 6rem 1.5rem 8rem;
+}
+
+.wrapup p {
+	color: var(--ink-dim);
+	font-size: 1.1rem;
+	margin: 0 0 2rem;
+}
+
+.wrapup .hero-actions { margin-top: 0; }
+
 /* ---------- footer ---------- */
 
 .site-footer {

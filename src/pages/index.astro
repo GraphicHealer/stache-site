@@ -120,12 +120,22 @@ const shot = (name: string) => `${base}shots/${name}.webp`;
 			</Feature>
 		</main>
 
+		<section class="wrapup reveal">
+			<p>That's the whole pitch — a photo, a bin, a label.</p>
+			<div class="hero-actions">
+				<a class="btn btn-primary" href={`${base}docs/getting-started/`}>Get started</a>
+				<a class="btn btn-ghost" href={`${base}docs/`}>Documentation</a>
+			</div>
+		</section>
+
 		<footer class="site-footer">
 			<p>
-				<strong>Stache</strong> is free, self-hosted software. One container, no
-				database service — your inventory and photos live on your own server.
+				<strong>Stache</strong> is free, open-source, self-hosted software.
+				Your inventory and photos stay on your own server.
 			</p>
 			<p>
+				<a href={`${base}docs/getting-started/`}>Get Started</a>
+				&nbsp;·&nbsp;
 				<a href="https://github.com/GraphicHealer/Stache">GitHub</a>
 				&nbsp;·&nbsp;
 				<a href={`${base}docs/`}>Documentation</a>
