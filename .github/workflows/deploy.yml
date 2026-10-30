@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          SITE_URL: https://stache.graphichealer.com
+          SITE_URL: https://stacheit.app
           BASE_PATH: /
 
       - uses: actions/upload-pages-artifact@v3

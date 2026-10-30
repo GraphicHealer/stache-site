@@ -4,7 +4,7 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: process.env.SITE_URL ?? 'https://stache.graphichealer.com',
+	site: process.env.SITE_URL ?? 'https://stacheit.app',
 	base: process.env.BASE_PATH ?? '/',
 	integrations: [
 		starlight({
