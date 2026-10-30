@@ -32,4 +32,4 @@ Marketing + docs site for [Stache](https://github.com/GraphicHealer/Stache)
   ported from the main repo's README/AGENTS.md/unraid.md — update when the app
   changes.
 - GitHub repo: `GraphicHealer/stache-site`. Pages URL:
-  `https://graphichealer.github.io/stache-site`.
+  `https://graphichealer.com/stache-site`.

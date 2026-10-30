@@ -28,7 +28,7 @@ npm run preview   # serve the production build
 
 `astro.config.mjs` reads two env vars (set in `deploy.yml`):
 
-- `SITE_URL` (default `https://graphichealer.github.io`)
+- `SITE_URL` (default `https://graphichealer.com`)
 - `BASE_PATH` (default `/stache-site`)
 
 For a custom domain later: set `SITE_URL`/`BASE_PATH` (and add a `CNAME` file).
