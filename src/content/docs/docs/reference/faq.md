@@ -17,7 +17,7 @@ Partially. Browsers only allow the live viewfinder in a [secure context](https:/
 
 ## Do I need the AI stuff?
 
-No — it's off by default. Filing, searching, labels, out-tracking all work with no models downloaded. AI is a layer that *suggests* names/tags/descriptions; you confirm everything. See [AI suggestions](/stache-site/docs/extras/ai/).
+No — it's off by default. Filing, searching, labels, out-tracking all work with no models downloaded. AI is a layer that *suggests* names/tags/descriptions; you confirm everything. See [AI suggestions](/docs/extras/ai/).
 
 ## Is there a mobile app?
 
@@ -25,7 +25,7 @@ Stache is a PWA — open it on your phone and "Add to Home Screen." It works off
 
 ## How do backups work?
 
-Everything lives in `/data` — copy it and you're backed up. There's also an optional built-in scheduler. See [Backups](/stache-site/docs/extras/backups/).
+Everything lives in `/data` — copy it and you're backed up. There's also an optional built-in scheduler. See [Backups](/docs/extras/backups/).
 
 ## Can other people sign up?
 
@@ -33,7 +33,7 @@ Only the first account is open signup. After that, accounts are created by logge
 
 ## What can an MCP connection see?
 
-Shared items only — private items are never exposed. Connections are individually revocable and can be read-only. See [MCP connections](/stache-site/docs/extras/mcp/).
+Shared items only — private items are never exposed. Connections are individually revocable and can be read-only. See [MCP connections](/docs/extras/mcp/).
 
 ## Something's broken — where are the logs?
 

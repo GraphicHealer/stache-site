@@ -41,4 +41,4 @@ STACHE_TRUST_PROXY=1
 # STACHE_TRUSTED_ORIGINS=https://stache.lan,https://stache.example.com
 ```
 
-HTTPS also unlocks the live camera viewfinder, clipboard buttons, and full PWA offline — see the note on the [Docker](/stache-site/docs/getting-started/docker/) page.
+HTTPS also unlocks the live camera viewfinder, clipboard buttons, and full PWA offline — see the note on the [Docker](/docs/getting-started/docker/) page.

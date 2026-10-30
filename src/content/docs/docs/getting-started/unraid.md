@@ -35,4 +35,4 @@ Alternatively, fill the fields by hand in **Add Container**:
 ## Notes
 
 - The container runs as a non-root user; the entrypoint makes sure `/data` is writable before dropping privileges.
-- Same plain-HTTP caveat as everywhere: the live camera viewfinder wants HTTPS — see the note on the [Docker](/stache-site/docs/getting-started/docker/) page.
+- Same plain-HTTP caveat as everywhere: the live camera viewfinder wants HTTPS — see the note on the [Docker](/docs/getting-started/docker/) page.

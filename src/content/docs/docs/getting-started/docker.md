@@ -56,7 +56,7 @@ The app idles around **200 MB**. Photo-similarity search (CLIP) loads lazily on 
 
 The live camera viewfinder, clipboard copy buttons, and offline PWA features need a [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) — `localhost` counts, `http://192.168.x.x` does not. Over `http://<lan-ip>:8080` the app still works (photo capture falls back to the file picker), but for the full experience front it with HTTPS: a reverse proxy like Caddy or Nginx Proxy Manager, a Tailscale cert, or your Home Assistant ingress URL.
 
-If you do proxy it, also set `STACHE_BASE_URL` (and `STACHE_TRUST_PROXY=1` so client IPs survive the hop) — see [Configuration](/stache-site/docs/reference/configuration/).
+If you do proxy it, also set `STACHE_BASE_URL` (and `STACHE_TRUST_PROXY=1` so client IPs survive the hop) — see [Configuration](/docs/reference/configuration/).
 
 ## Updating
 
@@ -68,4 +68,4 @@ Migrations apply automatically at boot.
 
 ## Backups
 
-Everything lives in the `data` volume — backing up Stache is backing up that one folder. See [Backups](/stache-site/docs/extras/backups/) for the built-in scheduler.
+Everything lives in the `data` volume — backing up Stache is backing up that one folder. See [Backups](/docs/extras/backups/) for the built-in scheduler.

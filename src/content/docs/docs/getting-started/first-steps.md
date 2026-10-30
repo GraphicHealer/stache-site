@@ -31,7 +31,7 @@ Scan first, snap after; or snap first and file into the area after — both orde
 
 - **Search** by name, description, or tag — fuzzy, typos tolerated.
 - **Scan the bin's label** to see its contents.
-- **Search by photo** — drop in a picture and Stache finds similar-looking items (see [Finding things](/stache-site/docs/using/finding/)).
+- **Search by photo** — drop in a picture and Stache finds similar-looking items (see [Finding things](/docs/using/finding/)).
 - **Scan a product barcode** on filing and Stache looks up what it is.
 
 That's the loop. Print more labels as you need them.

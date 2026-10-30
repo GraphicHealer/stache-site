@@ -28,4 +28,4 @@ Low stock and expiring warranties also fold into the digest and the inbox — su
 
 ## Home Assistant
 
-The [HACS integration](/stache-site/docs/extras/ha-sensors/) exposes items-out, unaccounted, low-stock, and warranty-expiring as sensors for real automations.
+The [HACS integration](/docs/extras/ha-sensors/) exposes items-out, unaccounted, low-stock, and warranty-expiring as sensors for real automations.

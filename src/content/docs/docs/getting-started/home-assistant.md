@@ -33,4 +33,4 @@ The live camera viewfinder needs a secure context (HTTPS or `localhost`). Throug
 
 ## Sensors inside Home Assistant
 
-Want your inventory in Home Assistant itself — items out, unaccounted, low stock, expiring warranties? There's a HACS integration for that: **[Home Assistant sensors](/stache-site/docs/extras/ha-sensors/)**.
+Want your inventory in Home Assistant itself — items out, unaccounted, low stock, expiring warranties? There's a HACS integration for that: **[Home Assistant sensors](/docs/extras/ha-sensors/)**.

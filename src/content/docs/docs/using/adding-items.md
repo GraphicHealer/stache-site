@@ -29,7 +29,7 @@ Photograph a receipt and Stache can split it into separate items — one photo, 
 
 ## AI suggestions
 
-If you turn on [AI suggestions](/stache-site/docs/extras/ai/), new photos get suggested names, descriptions, and tags in the background — always as suggestions you confirm, never silent overwrites. "Split pile" can even break a photo of many things into separate items you approve.
+If you turn on [AI suggestions](/docs/extras/ai/), new photos get suggested names, descriptions, and tags in the background — always as suggestions you confirm, never silent overwrites. "Split pile" can even break a photo of many things into separate items you approve.
 
 ## The Review queue
 

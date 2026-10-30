@@ -27,4 +27,4 @@ MCP sees **shared items only** — private items are never exposed, regardless o
 
 ## Exposing externally
 
-To reach an assistant over the internet, front Stache with HTTPS (see the note on the [Docker](/stache-site/docs/getting-started/docker/) page) and set `STACHE_BASE_URL` so generated links carry the public origin.
+To reach an assistant over the internet, front Stache with HTTPS (see the note on the [Docker](/docs/getting-started/docker/) page) and set `STACHE_BASE_URL` so generated links carry the public origin.
