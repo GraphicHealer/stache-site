@@ -1,0 +1,40 @@
+---
+import '../styles/landing.css';
+import credits from '../data/credits.json';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Photo credits — Stache</title>
+	</head>
+	<body>
+		<main class="features" style="padding-top: 5rem; max-width: 720px;">
+			<div>
+				<h1 style="font-size: 2rem; font-weight: 800;">Photo credits</h1>
+				<p style="color: var(--ink-dim); margin-top: 1rem; line-height: 1.7;">
+					The photographs shown inside the app screenshots on this site come from
+					<a href="https://commons.wikimedia.org" style="color: var(--accent);">Wikimedia Commons</a>
+					contributors, under the licenses noted below. Screenshots themselves are of
+					the real Stache app running locally.
+				</p>
+				<ul style="list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+					{credits.map((c) => (
+						<li style="border: 1px solid var(--line); border-radius: 0.75rem; padding: 1rem 1.25rem; background: var(--bg-card);">
+							<a href={c.source} style="color: var(--ink); font-weight: 600; text-decoration: none;">
+								{c.title.replace(/^File:/, '')}
+							</a>
+							<p style="color: var(--ink-dim); font-size: 0.85rem; margin-top: 0.35rem;">
+								{c.creator} · {c.license}
+							</p>
+						</li>
+					))}
+				</ul>
+				<p style="margin-top: 2.5rem;">
+					<a href="./" style="color: var(--accent);">← Back to Stache</a>
+				</p>
+			</div>
+		</main>
+	</body>
+</html>

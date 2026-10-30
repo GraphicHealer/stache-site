@@ -1,0 +1,28 @@
+---
+import PhoneFrame from './PhoneFrame.astro';
+
+interface Props {
+	kicker: string;
+	title: string;
+	flip?: boolean;
+	shot?: string;
+	alt?: string;
+}
+const { kicker, title, flip = false, shot, alt } = Astro.props;
+const side = flip ? 'from-right' : 'from-left';
+const shotSide = flip ? 'from-left' : 'from-right';
+---
+
+<section class:list={['feature', { flip }]}>
+	<div class:list={['feature-copy', 'reveal', side]}>
+		<p class="kicker">{kicker}</p>
+		<h2>{title}</h2>
+		<p><slot /></p>
+		<slot name="points" />
+	</div>
+	<div class:list={['feature-visual', 'reveal', shotSide]}>
+		<PhoneFrame src={shot} alt={alt}>
+			<slot name="mock" />
+		</PhoneFrame>
+	</div>
+</section>

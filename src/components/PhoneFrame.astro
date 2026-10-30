@@ -1,0 +1,20 @@
+---
+interface Props {
+	src?: string;
+	alt?: string;
+}
+const { src, alt = 'Stache app screenshot' } = Astro.props;
+---
+
+<div class="phone" aria-hidden={src ? 'false' : 'true'}>
+	<div class="phone-island"></div>
+	<div class="phone-screen">
+		{src ? (
+			<img src={src} alt={alt} loading="lazy" decoding="async" />
+		) : (
+			<div class="phone-placeholder">
+				<slot />
+			</div>
+		)}
+	</div>
+</div>
