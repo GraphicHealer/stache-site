@@ -20,8 +20,9 @@ export default defineConfig({
 				{
 					label: 'Getting Started',
 					items: [
-						{ label: 'Install on Home Assistant', slug: 'docs/getting-started/home-assistant' },
+						{ label: 'Choose how to run it', slug: 'docs/getting-started' },
 						{ label: 'Install with Docker', slug: 'docs/getting-started/docker' },
+						{ label: 'Install on Home Assistant', slug: 'docs/getting-started/home-assistant' },
 						{ label: 'Install on Unraid', slug: 'docs/getting-started/unraid' },
 						{ label: 'Your first bin', slug: 'docs/getting-started/first-steps' },
 					],
