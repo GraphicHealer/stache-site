@@ -82,6 +82,15 @@ body {
 	margin-top: 1.75rem;
 }
 
+.hero-eyebrow {
+	font-size: 0.8rem;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--accent);
+	margin: 0 0 0.4rem;
+}
+
 .hero .tagline {
 	font-size: clamp(1.15rem, 3vw, 1.5rem);
 	color: var(--accent);
