@@ -25,6 +25,8 @@ Go to **Labels** and print. Options:
 
 Label size and count are configurable. Sequential codes print in order.
 
+<img src="/shots-docs/browse.webp" alt="The Areas browse view showing labeled containers" width="300" />
+
 ## Moving things around
 
 - **Move an item** to a different area anytime — it's an undoable event like everything else.

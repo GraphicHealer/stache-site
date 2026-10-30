@@ -9,6 +9,8 @@ Finding something is the whole point, so there are four ways in.
 
 Type what you remember. The search is exact **and** fuzzy — typos and half-remembered names still match names, descriptions, and tags. Filter by area (covers the whole subtree) or by tag.
 
+<img src="/shots/search.webp" alt="Search results for 'drill' showing the matching item and where it lives" width="300" />
+
 ## Photo search
 
 Drop in a photo and Stache finds items that look like it — powered by local CLIP embeddings computed on your own hardware, nothing leaves the machine.

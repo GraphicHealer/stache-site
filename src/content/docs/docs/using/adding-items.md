@@ -23,6 +23,8 @@ Open any item to add:
 - **"Goes with" links** — connect things that belong together (charger ↔ camera, lid ↔ pot)
 - **More photos** — an item can have several
 
+<img src="/shots-docs/item.webp" alt="An item page showing a photo, name, quantity, and actions" width="300" />
+
 ## Receipts
 
 Photograph a receipt and Stache can split it into separate items — one photo, many items. Handy for filing a haul without re-photographing everything.

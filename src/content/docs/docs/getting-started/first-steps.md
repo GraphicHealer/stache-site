@@ -15,6 +15,8 @@ Go to **Labels** and print a batch. Each label is a random QR like `ST-K7QX9M2T`
 
 Any printer works; if you have a label printer (Zebra/ZPL over the network, a CUPS queue, or DYMO Connect) you can hook it up in **Settings → Printers**.
 
+<img src="/shots-docs/labels.webp" alt="The Labels page showing a sheet of printable QR labels" width="300" />
+
 ## 3. Claim a label
 
 Stick a label on a bin, shelf, or drawer. Scan it with your phone camera (or type the code) — Stache asks you to name the area and optionally photograph it. Done: that QR is now a scannable container.

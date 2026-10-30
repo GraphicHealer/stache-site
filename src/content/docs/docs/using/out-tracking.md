@@ -20,6 +20,8 @@ Every item is **home** by default. It can also be:
 
 **Out** shows everything currently out or lent — item, home area, how many days. No badges, no red overdue states. It's a quiet list, not an alarm.
 
+<img src="/shots/out.webp" alt="The Out of place list with lent and out items" width="300" />
+
 ## Reminders (optional)
 
 If you want a nudge, enable **Settings → Out reminders**: one bundled digest POST to any webhook — ntfy, Discord, Home Assistant — daily at a time you pick, or triggered externally. It's one message for everything, snoozable per item, never per-item pings.

@@ -22,6 +22,33 @@ body {
 	overflow-x: hidden;
 }
 
+/* ---------- top nav ---------- */
+
+.top-nav {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 1.5rem 2rem;
+	z-index: 10;
+}
+
+.top-nav a {
+	color: var(--ink-dim);
+	text-decoration: none;
+	font-size: 0.95rem;
+	font-weight: 600;
+	padding: 0.5rem 0.9rem;
+	border-radius: 0.5rem;
+	border: 1px solid transparent;
+	transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.top-nav a:hover {
+	color: var(--ink);
+	border-color: var(--line);
+	background: rgba(255, 255, 255, 0.04);
+}
+
 /* ---------- hero ---------- */
 
 .hero {

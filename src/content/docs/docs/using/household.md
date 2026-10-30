@@ -9,6 +9,8 @@ Stache is built for a household: the inventory is **shared by default**, and eve
 
 The first signup is open — that person becomes admin. After that, accounts are created by logged-in members (Settings → Household): you create the account and hand over the credentials. There's no public registration to leave open on the internet.
 
+<img src="/shots-docs/settings.webp" alt="The Settings page showing household and connection options" width="300" />
+
 ## Private items
 
 Any item can be marked **private** — visible only to its owner. Everything else is shared with the household.
