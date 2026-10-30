@@ -55,7 +55,7 @@ const shot = (name: string) => `${base}shots/${name}.webp`;
 				forms — point, shoot, done. Name it later if you feel like it. Or
 				never.
 				<ul slot="points">
-					<li>Image recognition names and tags it for you — on your own hardware, nothing sent away</li>
+					<li>Recognizes what's in the shot — suggests the name and details for you</li>
 					<li>Works offline — syncs when you're back</li>
 					<li>Made for your phone's camera</li>
 				</ul>
@@ -78,16 +78,28 @@ const shot = (name: string) => `${base}shots/${name}.webp`;
 				shot={shot('search')}
 				alt="Stache search results"
 			>
-				Type what you remember — typos are fine, and the tags it added when
-				you filed things still catch them. Or drop in a photo and Stache
-				finds things that look like it. Scan a product barcode and it fills
-				in the rest.
+				Type what you remember — typos are fine, and the tags it suggested
+				when you filed things still catch them. Or drop in a photo and
+				Stache finds things that look like it. Scan a product barcode and
+				it fills in what it can.
+			</Feature>
+
+			<Feature
+				kicker="Connect"
+				title="Your stuff, available to your AI"
+				flip
+				shot={shot('mcp')}
+				alt="Stache settings showing an MCP connection and its URL"
+			>
+				Ask your favorite AI assistant where something is stored, what's in
+				a particular bin, or what's still checked out. You decide whether it
+				can just look or also file things — every connection gets its own
+				revocable key.
 			</Feature>
 
 			<Feature
 				kicker="Keep track"
 				title="Know what's out"
-				flip
 				shot={shot('out')}
 				alt="Stache list of items that are lent out or away"
 			>
@@ -97,19 +109,21 @@ const shot = (name: string) => `${base}shots/${name}.webp`;
 
 			<Feature
 				kicker="Relax"
-				title="Can't break anything"
+				title="Mistakes are cheap"
+				flip
 				shot={shot('trash')}
 				alt="Stache trash showing recently removed items"
 			>
-				Filed it wrong? Deleted by mistake? Every action is undoable and
-				nothing is ever really destroyed — the trash keeps it all.
+				Filed it wrong? Deleted by accident? Most changes can be undone,
+				and deleted items sit in Trash until you're sure — restore them, or
+				permanently delete them when you're ready.
 			</Feature>
 		</main>
 
 		<footer class="site-footer">
 			<p>
 				<strong>Stache</strong> is free, self-hosted software. One container, no
-				database service, your photos never leave your house.
+				database service — your inventory and photos live on your own server.
 			</p>
 			<p>
 				<a href="https://github.com/GraphicHealer/Stache">GitHub</a>

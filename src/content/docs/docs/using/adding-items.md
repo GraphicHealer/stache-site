@@ -31,7 +31,7 @@ Photograph a receipt and Stache can split it into separate items — one photo, 
 
 ## AI suggestions
 
-If you turn on [AI suggestions](/docs/extras/ai/), new photos get suggested names, descriptions, and tags in the background — always as suggestions you confirm, never silent overwrites. "Split pile" can even break a photo of many things into separate items you approve.
+New photos get suggested names, descriptions, and tags in the background via [AI suggestions](/docs/using/ai/) — always as suggestions you confirm, never silent overwrites. "Split pile" can even break a photo of many things into separate items you approve. It's on by default; turn it off in Settings if you'd rather not use it.
 
 ## The Review queue
 
@@ -39,4 +39,4 @@ If you turn on [AI suggestions](/docs/extras/ai/), new photos get suggested name
 
 ## Undo
 
-Filing an item is undoable like everything else. The toast that appears after each action has **Undo** — or find it later in the item's history.
+Filing an item is undoable, like most actions. The toast that appears after each action has **Undo** — or find it later in the item's history.

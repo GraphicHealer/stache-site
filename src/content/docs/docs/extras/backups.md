@@ -13,7 +13,9 @@ Stache keeps **everything** in one place: the SQLite database, all photos, and t
 
 ## Built-in scheduler (opt-in)
 
-Stache can write scheduled backups itself — **Settings → Backup**. It produces a bundle (a plaintext `manifest.json` plus a `payload.zip`, optionally encrypted) into `/data/backups`. The interval is gated by the `backup_schedule` setting — it's off until you opt in.
+Stache can write scheduled backups itself — **Settings → Backup**. Each one is a plaintext `manifest.json` plus a `payload.zip` under `/data/backups`. **Scheduled backups are not encrypted** — protect that folder like you'd protect the raw data. Encrypted backup downloads are available manually in the same screen.
+
+The interval is gated by the `backup_schedule` setting — it's off until you opt in.
 
 ## Restore
 

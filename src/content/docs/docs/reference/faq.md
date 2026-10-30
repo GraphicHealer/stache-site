@@ -17,11 +17,11 @@ Partially. Browsers only allow the live viewfinder in a [secure context](https:/
 
 ## Do I need the AI stuff?
 
-No — it's off by default. Filing, searching, labels, out-tracking all work with no models downloaded. AI is a layer that *suggests* names/tags/descriptions; you confirm everything. See [AI suggestions](/docs/extras/ai/).
+It's on by default, but you don't have to think about it — it just *suggests* names/tags/descriptions in the background and you confirm or ignore. Everything works with it off too (`STACHE_NO_ML=1`, or the toggle in Settings). See [AI suggestions](/docs/using/ai/).
 
 ## Is there a mobile app?
 
-Stache is a PWA — open it on your phone and "Add to Home Screen." It works offline too: photos and scans queue locally and sync when you're back in signal.
+Stache is a PWA — open it on your phone and "Add to Home Screen." It works offline too: photos and scans queue locally and sync once your server is reachable again. Things that need the outside world — barcode lookups, a remote AI provider — wait for a connection; everything local keeps working.
 
 ## How do backups work?
 

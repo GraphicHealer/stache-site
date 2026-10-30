@@ -35,12 +35,12 @@ export default defineConfig({
 						{ label: 'Finding things', slug: 'docs/using/finding' },
 						{ label: 'Out & lent tracking', slug: 'docs/using/out-tracking' },
 						{ label: 'Household members', slug: 'docs/using/household' },
+						{ label: 'AI suggestions', slug: 'docs/using/ai' },
 					],
 				},
 				{
 					label: 'Optional extras',
 					items: [
-						{ label: 'AI suggestions', slug: 'docs/extras/ai' },
 						{ label: 'Home Assistant sensors', slug: 'docs/extras/ha-sensors' },
 						{ label: 'Backups', slug: 'docs/extras/backups' },
 						{ label: 'MCP connections', slug: 'docs/extras/mcp' },

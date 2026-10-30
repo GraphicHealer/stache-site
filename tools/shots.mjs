@@ -35,10 +35,12 @@ await page.click('button[type="submit"], button:has-text("Sign in")');
 await page.waitForTimeout(2500);
 
 // Landing-page phones -> public/shots/
+// Optional 3rd element: text to scroll into view before shooting.
 const landing = [
   ['home', '/'],
   ['area', `/areas/${AREA_ID}`],
   ['search', '/search?q=drill'],
+  ['mcp', '/settings', 'MCP connections'],
   ['out', '/out'],
   ['trash', '/trash'],
 ];
@@ -51,9 +53,10 @@ const docs = [
 ];
 
 for (const [dir, list] of [['shots', landing], ['shots-docs', docs]]) {
-  for (const [name, path] of list) {
+  for (const [name, path, scrollTo] of list) {
     if (path.includes('undefined') || path.endsWith('//')) continue;
     await page.goto(BASE + path, { waitUntil: 'networkidle' });
+    if (scrollTo) await page.locator(`text=${scrollTo}`).first().scrollIntoViewIfNeeded();
     await page.waitForTimeout(1200);
     const buf = await page.screenshot();
     await sharp(buf).webp({ quality: 82 }).toFile(`public/${dir}/${name}.webp`);
