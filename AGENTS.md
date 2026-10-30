@@ -25,7 +25,9 @@ Marketing + docs site for [Stache](https://github.com/GraphicHealer/Stache)
   demo Stache instance, not mockups — regenerate with `tools/shots.mjs`
   (playwright-core + system chromium). Demo instance used
   `ghcr.io/graphichealer/stache` on :8181 with seeded areas/items; seed data +
-  stock photos live under `/tmp/stache-seed/` (ephemeral).
+  stock photos live under `/tmp/stache-seed/` (ephemeral). Demo account is the
+  generic name **Alex** (demo@stache.local) — screenshots are public, never
+  seed a real name.
 - Demo photos are Wikimedia Commons CC0/CC-BY/PD images — keep
   `src/data/credits.json` (rendered at `/credits/`) in sync if you swap them.
 - Docs copy: plain-language landing page; technical is OK in docs. Content was
