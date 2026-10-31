@@ -15,13 +15,19 @@ Stache is a single container — no database service, no companion containers. E
 
 ### Manual install
 
-Copy the template from the repository onto your flash drive's user-template folder, then install from the Docker tab:
+Fetch the template straight into Unraid's user-template folder over SSH:
 
-1. Copy `unraid/my-stache.xml` to `/boot/config/plugins/dockerMan/templates-user/my-stache.xml`
-   (e.g. `cp my-stache.xml /boot/config/plugins/dockerMan/templates-user/` over SSH, or drop it on the `flash` share at `config/plugins/dockerMan/templates-user/`).
-   Keep the `my-` prefix — dockerMan treats user templates without it badly.
-2. **Docker** tab → **Add Container** → the **Template** dropdown now lists **Stache**. Pick it, adjust the port/appdata if needed, Apply.
-3. Open the WebUI on port 8080.
+```sh
+wget -O /boot/config/plugins/dockerMan/templates-user/my-stache.xml \
+  https://raw.githubusercontent.com/GraphicHealer/Stache/main/unraid/my-stache.xml
+```
+
+Or drop `unraid/my-stache.xml` on the `flash` share at `config/plugins/dockerMan/templates-user/` by hand. Either way, keep the `my-` prefix — dockerMan treats user templates without it badly.
+
+Then:
+
+1. **Docker** tab → **Add Container** → the **Template** dropdown now lists **Stache**. Pick it, adjust the port/appdata if needed, Apply.
+2. Open the WebUI on port 8080.
 
 Alternatively, fill the fields by hand in **Add Container**:
 
