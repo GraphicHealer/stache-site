@@ -63,19 +63,33 @@ const shot = (name: string) => `${base}shots/${name}.webp`;
 			</Feature>
 
 			<Feature
-				kicker="Organize"
+				kicker="Label"
 				title="Label the bin, not the stuff"
 				flip
-				shot={shot('label-bin')}
-				alt="Stache QR labels and the contents of a labeled bin"
+				shot={shot('labels')}
+				alt="Stache labels page with QR codes, printers, and a print preview"
 			>
-				Print a QR label, stick it on a bin, shelf, or drawer. Scan it once to
-				claim it — scan it anytime to see what's inside without opening a lid.
+				Mint a batch of QR labels and print them on whatever you have —
+				plain paper and scissors work, so do Zebra rolls, DYMO, and Avery
+				sheets. Codes mean nothing until they're claimed, so nothing goes to
+				waste.
+			</Feature>
+
+			<Feature
+				kicker="Organize"
+				title="Every bin knows what's inside"
+				shot={shot('area')}
+				alt="A labeled bin in Stache showing its photo, code, and contents"
+			>
+				Stick a label on a bin, shelf, or drawer and scan it once — it's a
+				container now. Scan it anytime to see inside without opening a lid.
+				Bins nest as deep as you like, and counts roll up the whole tree.
 			</Feature>
 
 			<Feature
 				kicker="Find"
 				title="Search by words — or by photo"
+				flip
 				shot={shot('search')}
 				alt="Stache search results"
 			>
@@ -87,7 +101,6 @@ const shot = (name: string) => `${base}shots/${name}.webp`;
 			<Feature
 				kicker="Connect"
 				title="Your stuff, available to your AI"
-				flip
 				shot={shot('mcp')}
 				alt="Stache settings showing an MCP connection and its URL"
 			>
@@ -100,6 +113,7 @@ const shot = (name: string) => `${base}shots/${name}.webp`;
 			<Feature
 				kicker="Keep track"
 				title="Know what's out"
+				flip
 				shot={shot('out')}
 				alt="Stache list of items that are lent out or away"
 			>
