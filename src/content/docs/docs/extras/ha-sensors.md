@@ -13,6 +13,8 @@ The [stache-ha](https://github.com/GraphicHealer/stache-ha) HACS integration exp
 2. Install **Stache** from HACS, restart Home Assistant.
 3. **Settings → Devices & Services → Add Integration → Stache**.
 
+Requires Home Assistant **2025.1** or newer.
+
 ## Configure
 
 The integration needs the sensor URL from Stache:
@@ -31,7 +33,7 @@ You can also enter the Stache URL and webhook token as two fields.
 | Low stock | Count of items at/below their restock point | Names, quantity, threshold |
 | Warranty expiring | Count of warranties ending within 30 days | Names, end dates |
 
-Polls every 2 minutes. All shared household items are included; private items are never exposed.
+Polls every 2 minutes by default — change it under the integration's **Configure** options (30–3600s). All shared household items are included; private items are never exposed. If the stored token is ever rejected, Home Assistant raises a repair asking for a fresh one.
 
 ## Without the integration
 
