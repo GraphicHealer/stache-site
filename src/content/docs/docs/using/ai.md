@@ -14,7 +14,15 @@ AI recognition is **on by default** — no setup needed. New photos get suggeste
 
 ## Providers
 
-**Built-in (local)** — bundled Florence-2, runs offline after a one-time ~400 MB download into `/data` on first use. Nothing leaves your network.
+**Built-in (local)** — pick a model in **Settings → AI suggestions**; it downloads into `/data/models` on first use (with live progress) and runs offline after that. Nothing leaves your network. Three levels:
+
+| Model | Size | Notes |
+|-------|------|-------|
+| Florence-2 | ~400 MB | Light and fast — fixed-task captioning/OCR/detection |
+| LFM2.5-VL 450M | ~700 MB | **Default.** Reads your item names as context, so suggestions match your naming style |
+| Moondream2 | ~2 GB | Biggest, best quality — for hosts with headroom |
+
+Switching models deletes the old one shortly after the new one is ready. `STACHE_ML_LEVEL` sets the starting level (`0`–`3`); the Settings picker overrides it and persists.
 
 **Remote** — any OpenAI-compatible `/chat/completions` endpoint with a vision model: Ollama, LM Studio, or a hosted provider. This is an upgrade path, not a requirement — handy if you already run a stronger model. Photos a remote provider processes do leave your server, but **private items are never sent**.
 
@@ -22,7 +30,7 @@ Configure in **Settings → AI suggestions**. The compose file already maps `hos
 
 ## Turning it off
 
-Prefer no AI at all? Turn it off in **Settings → AI suggestions**, or set `STACHE_NO_ML=1` to disable ML entirely on constrained hosts — everything else keeps working.
+Prefer no AI at all? Turn it off in **Settings → AI suggestions**, or set `STACHE_ML_LEVEL=0` (`STACHE_NO_ML=1` works too) to disable ML entirely on constrained hosts — everything else keeps working.
 
 ## Resource notes
 

@@ -17,6 +17,8 @@ Stache can write scheduled backups itself — **Settings → Backup**. Each one 
 
 The interval is gated by the `backup_schedule` setting — it's off until you opt in.
 
+For a portable slice rather than a full backup, **Settings** also has JSON and CSV export downloads.
+
 ## Restore
 
 Place a backup where the app can stage it (`/data/restore-pending/`) and Stache swaps it in before the database opens, then restarts. Because it's a plain swap of a self-contained data dir, a manual restore is also just "replace the volume contents."

@@ -38,7 +38,23 @@ Alternatively, fill the fields by hand in **Add Container**:
 - **Variable:** `TZ` (your timezone)
 - **Extra Parameters:** `--add-host=host.docker.internal:host-gateway` (lets the optional AI provider URL reach services on the Unraid host, e.g. Ollama at `http://host.docker.internal:11434/v1`)
 
+## Configuration
+
+| Setting | Default | Notes |
+|---------|---------|-------|
+| WebUI port | `8080` | Remap freely — nothing else depends on it |
+| `/data` path | `/mnt/user/appdata/stache` | DB + photos + models. Back this up |
+| `TZ` | `UTC` | Digest "time of day" uses this |
+| `BETTER_AUTH_SECRET` | auto | Optional; persisted in the db if blank |
+| `STACHE_ML_LEVEL` | `2` | `0` disables ML, `1` Florence-2, `2` LFM2.5-VL (default), `3` Moondream2 |
+| `STACHE_BASE_URL` | unset | Public `https://` URL behind a reverse proxy — enables Secure cookies and fixes label/webhook links |
+| `STACHE_TRUST_PROXY` | unset | `1` behind a reverse proxy so real client IPs are trusted |
+
+The full variable list lives on the [Configuration](/docs/reference/configuration/) page.
+
 ## Notes
 
 - The container runs as a non-root user; the entrypoint makes sure `/data` is writable before dropping privileges.
+- **Memory:** ~200 MB idle, ~450–550 MB once the AI models are warm. `STACHE_ML_LEVEL=0` skips them entirely.
+- **Updates:** Unraid's normal container update flow. Tagged releases (`ghcr.io/graphichealer/stache:0.5.0` etc.) exist if you prefer pinning.
 - Same plain-HTTP caveat as everywhere: the live camera viewfinder wants HTTPS — see the note on the [Docker](/docs/getting-started/docker/) page.

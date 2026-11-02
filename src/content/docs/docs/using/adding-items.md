@@ -37,6 +37,10 @@ New photos get suggested names, descriptions, and tags in the background via [AI
 
 **Review** collects things worth a glance: unnamed items, possible duplicates (merge either way, or keep separate), and items whose AI pass failed (one-tap retry). There's no obligation — it's a tidy-up list, not a chore queue.
 
+## Moving items
+
+To relocate things in bulk, multi-select cards on a bin page (or on Browse) — tap to select, then use the sticky selection bar's **Move…**. Undoable like everything else.
+
 ## Undo
 
 Filing an item is undoable, like most actions. The toast that appears after each action has **Undo** — or find it later in the item's history.

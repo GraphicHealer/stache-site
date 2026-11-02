@@ -16,7 +16,7 @@ Type what you remember. The search is exact **and** fuzzy — typos and half-rem
 Drop in a photo and Stache finds items that look like it — powered by local CLIP embeddings computed on your own hardware, nothing leaves the machine.
 
 :::note
-CLIP loads lazily on first use and pushes memory from ~200 MB idle to ~450–550 MB warm. On small hosts you can turn it off with `STACHE_NO_ML=1`; everything else keeps working.
+CLIP loads lazily on first use and pushes memory from ~200 MB idle to ~450–550 MB warm. On small hosts you can turn it off with `STACHE_ML_LEVEL=0` (or the legacy `STACHE_NO_ML=1`); everything else keeps working.
 :::
 
 ## Barcode

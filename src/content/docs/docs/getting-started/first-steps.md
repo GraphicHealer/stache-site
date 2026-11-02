@@ -11,9 +11,9 @@ Open the app and sign up. The **first** account created becomes the household ad
 
 ## 2. Print some labels
 
-Go to **Labels** and print a batch. Each label is a random QR like `ST-K7QX9M2T` — it means nothing until you claim it, so you can print a whole sheet and stick them on things whenever.
+Go to **Labels**, mint a batch (**Add N**) and print it. Each label is a random QR like `ST-K7QX9M2T` — it means nothing until you claim it, so you can print a whole sheet and stick them on things whenever.
 
-Any printer works; if you have a label printer (Zebra/ZPL over the network, a CUPS queue, or DYMO Connect) you can hook it up in **Settings → Printers**.
+Any printer works — plain paper and scissors included. If you have a label printer (Zebra/ZPL over the network, a CUPS queue, or DYMO Connect) or die-cut label sheets for your regular printer, hook it up in **Settings → Printers** — see [Labels & areas](/docs/using/labels-areas/) for media types and sheet presets.
 
 <img src="/shots-docs/labels.webp" alt="The Labels page showing a sheet of printable QR labels" width="300" />
 

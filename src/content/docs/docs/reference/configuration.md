@@ -15,7 +15,8 @@ Almost everything is configured in the app's **Settings** page — AI provider, 
 | `DB_PATH` | `$DATA_DIR/stache.db` | SQLite file location |
 | `TZ` | `UTC` | Digest schedule timezone |
 | `BETTER_AUTH_SECRET` | auto-generated | Session secret (persisted in the DB's settings) |
-| `STACHE_NO_ML` | unset | `1` disables CLIP embeddings / photo similarity |
+| `STACHE_ML_LEVEL` | `2` | Local AI model: `0` off, `1` Florence-2, `2` LFM2.5-VL (default), `3` Moondream2 |
+| `STACHE_NO_ML` | unset | Legacy alias — `1` is the same as `STACHE_ML_LEVEL=0` |
 | `STACHE_SETUP_TOKEN` | unset | If set, the first sign-up requires this token |
 | `STACHE_BASE_URL` | unset | Public origin for auth callbacks and label/digest links when behind a proxy |
 | `STACHE_TRUSTED_ORIGINS` | unset | Comma-separated extra origins allowed to call the auth API |

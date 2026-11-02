@@ -50,7 +50,7 @@ curl localhost:8080/api/health
 
 ## Memory
 
-The app idles around **200 MB**. Photo-similarity search (CLIP) loads lazily on the first photo upload or search — once warm the app sits around **450–550 MB**. On very small hosts, set `STACHE_NO_ML=1` to disable embeddings entirely; everything else keeps working.
+The app idles around **200 MB**. Photo-similarity search (CLIP) loads lazily on the first photo upload or search — once warm the app sits around **450–550 MB**. The built-in AI model downloads once into the data volume; on very small hosts set `STACHE_ML_LEVEL=0` to disable ML entirely (`STACHE_NO_ML=1` is a legacy alias). Everything else keeps working.
 
 ## One caveat on plain HTTP
 

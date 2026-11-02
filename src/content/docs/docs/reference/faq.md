@@ -13,11 +13,11 @@ Partially. Browsers only allow the live viewfinder in a [secure context](https:/
 
 ## How much RAM does it need?
 
-~200 MB idle. Photo similarity (CLIP) loads lazily on first use and brings it to ~450–550 MB warm. `STACHE_NO_ML=1` disables embeddings on tiny hosts; everything else keeps working.
+~200 MB idle. Photo similarity (CLIP) loads lazily on first use and brings it to ~450–550 MB warm. `STACHE_ML_LEVEL=0` disables ML on tiny hosts (`STACHE_NO_ML=1` works too); everything else keeps working.
 
 ## Do I need the AI stuff?
 
-It's on by default, but you don't have to think about it — it just *suggests* names/tags/descriptions in the background and you confirm or ignore. Everything works with it off too (`STACHE_NO_ML=1`, or the toggle in Settings). See [AI suggestions](/docs/using/ai/).
+It's on by default, but you don't have to think about it — it just *suggests* names/tags/descriptions in the background and you confirm or ignore. Everything works with it off too (`STACHE_ML_LEVEL=0`, or the toggle in Settings). See [AI suggestions](/docs/using/ai/).
 
 ## Is there a mobile app?
 
