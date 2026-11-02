@@ -18,16 +18,17 @@ writeFileSync(
 writeFileSync(join(root, 'astro.config.mjs'), `export default { sidebar: [{ slug: 'docs/using/a' }] };`);
 writeFileSync(
   join(root, 'src/content/docs/docs/using/a.md'),
-  '[rel](./b.md) [up](../extras/x.md) [abs](/docs/extras/x/) [frag](./b.md#h) [missing](./ghost.md)',
+  '[rel](./b.md) [up](../extras/x.md) [abs](/docs/extras/x/) [frag](./b.md#h) [badfrag](./b.md#nope) [missing](./ghost.md)',
 );
-writeFileSync(join(root, 'src/content/docs/docs/using/b.md'), '# b');
+writeFileSync(join(root, 'src/content/docs/docs/using/b.md'), '# B\n\n## H\n\ntext');
 writeFileSync(join(root, 'src/content/docs/docs/extras/x.md'), '# x');
 
 const { broken } = runSiteLinkCheck(root);
 const targets = broken.map((b) => b.target);
-assert.equal(broken.length, 2, JSON.stringify(broken, null, 2));
+assert.equal(broken.length, 3, JSON.stringify(broken, null, 2));
 assert.ok(targets.includes('/docs/nope/'), 'missing route not reported');
 assert.ok(targets.includes('./ghost.md'), 'missing relative link not reported');
+assert.ok(targets.includes('./b.md#nope'), 'missing anchor not reported');
 console.log('linkcheck selftest: pass');
 
 // Reduced-motion regression: the override must be at least as specific as the

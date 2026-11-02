@@ -38,8 +38,22 @@ export function runSiteLinkCheck(root) {
     }
   }
 
+  // GitHub-style heading slugs, matching what Starlight/rehype-slug emits.
+  const slugify = (h) =>
+    h.toLowerCase().trim().replace(/[^\p{L}\p{N}\s-]/gu, '').replace(/\s+/g, '-');
+  const anchorsOf = (file) => {
+    const set = new Set();
+    try {
+      for (const m of fs.readFileSync(file, 'utf8').matchAll(/^#{1,6}\s+(.+)$/gm)) {
+        set.add(slugify(m[1].replace(/\s+#+\s*$/, '')));
+      }
+    } catch { /* unreadable -> no anchors */ }
+    return set;
+  };
+
   const broken = [];
   const checkTarget = (file, raw) => {
+    const frag = raw.split('#')[1]?.split('?')[0] ?? null;
     const t = raw.split('#')[0].split('?')[0];
     if (!t || t.startsWith('//') || t.startsWith('{') || t.includes('${')) return;
     if (/^[a-z]+:/i.test(t)) return; // external scheme (https:, mailto:, ...)
@@ -50,13 +64,29 @@ export function runSiteLinkCheck(root) {
     }
     // Relative link - resolve against the markdown file's location.
     const abs = path.resolve(path.dirname(file), t);
-    if (fs.existsSync(abs)) return; // a real file (image, asset, dir)
+    if (fs.existsSync(abs)) {
+      // A doc target: check the fragment resolves to a real heading too.
+      if (frag && /\.(md|mdx)$/.test(abs)) {
+        const anchors = anchorsOf(abs);
+        if (anchors.size && !anchors.has(frag))
+          broken.push({ file, target: raw, why: `no such anchor (${anchors.size} headings)` });
+      }
+      return;
+    }
     const docHits = [
       abs + '.md', abs + '.mdx',
       path.join(abs, 'index.md'), path.join(abs, 'index.mdx'),
     ];
-    if (!docHits.some((c) => fs.existsSync(c)))
+    const docHit = docHits.find((c) => fs.existsSync(c));
+    if (!docHit) {
       broken.push({ file, target: raw, why: 'unresolvable relative link' });
+      return;
+    }
+    if (frag && frag !== 'top') {
+      const anchors = anchorsOf(docHit);
+      if (anchors.size && !anchors.has(frag))
+        broken.push({ file, target: raw, why: `no such anchor (${anchors.size} headings)` });
+    }
   };
 
   const files = [
