@@ -49,3 +49,7 @@ The custom domain is set in repo Settings → Pages; keep `SITE_URL` in sync.
 ## Credits
 
 Demo photos are CC0 / CC-BY / public-domain images from Wikimedia Commons — see `src/data/credits.json` and the site's `/credits/` page.
+
+## License
+
+[AGPL-3.0](LICENSE) - forks must stay open source, with attribution.
