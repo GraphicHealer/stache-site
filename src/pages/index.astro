@@ -151,18 +151,23 @@ const shot = (name: string) => `${base}shots/${name}.webp`;
 		</footer>
 
 		<script is:inline>
-			const io = new IntersectionObserver(
-				(entries) => {
-					for (const e of entries) {
-						if (e.isIntersecting) {
-							e.target.classList.add('visible');
-							io.unobserve(e.target);
-						}
-					}
-				},
-				{ threshold: 0.2, rootMargin: '0px 0px -8% 0px' }
-			);
-			document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+			document.documentElement.classList.add('js');
+			const io = 'IntersectionObserver' in window
+				? new IntersectionObserver(
+						(entries) => {
+							for (const e of entries) {
+								if (e.isIntersecting) {
+									e.target.classList.add('visible');
+									io.unobserve(e.target);
+								}
+							}
+						},
+						{ threshold: 0.2, rootMargin: '0px 0px -8% 0px' }
+					)
+				: null;
+			document
+				.querySelectorAll('.reveal')
+				.forEach((el) => (io ? io.observe(el) : el.classList.add('visible')));
 		</script>
 	</body>
 </html>
