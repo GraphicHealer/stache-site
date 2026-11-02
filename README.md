@@ -1,8 +1,17 @@
-# stache-site
-
-Marketing site + documentation for [Stache](https://github.com/GraphicHealer/Stache) — the self-hosted, photo-first home inventory app.
-
-Built with **Astro + Starlight**. Deployed to GitHub Pages via Actions.
+<p align="center">
+  <img src="public/favicon.svg" alt="Stache logo" width="128">
+</p>
+<h1 align="center">stache-site</h1>
+<p align="center">
+  Marketing site + documentation for <a href="https://github.com/GraphicHealer/Stache">Stache</a> — the self-hosted, photo-first home inventory app.<br>
+  Live at <a href="https://stacheit.app">stacheit.app</a>. Built with Astro + Starlight, deployed to GitHub Pages.
+</p>
+<p align="center">
+  <a href="AI-DECLARATION.md"><img src="https://img.shields.io/badge/AI--DECLARATION-pair-blue" alt="AI-DECLARATION: pair"></a>
+</p>
+<p align="center">
+  <a href="https://github.com/GraphicHealer/stache-site/actions/workflows/deploy.yml"><img src="https://github.com/GraphicHealer/stache-site/actions/workflows/deploy.yml/badge.svg" alt="Deploy"></a>
+</p>
 
 ## Commands
 
