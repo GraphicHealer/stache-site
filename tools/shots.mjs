@@ -37,7 +37,7 @@ await page.waitForTimeout(2500);
 // Landing-page phones -> public/shots/
 // Optional 3rd element: text to scroll into view before shooting.
 const landing = [
-  ['home', '/'],
+  ['item', `/items/${ITEM_ID}`],
   ['labels', '/labels'],
   ['area', `/areas/${AREA_ID}`],
   ['search', '/search?q=drill'],
@@ -56,15 +56,7 @@ const docs = [
 for (const [dir, list] of [['shots', landing], ['shots-docs', docs]]) {
   for (const [name, path, scrollTo] of list) {
     if (path.includes('undefined') || path.endsWith('//')) continue;
-    if (name === 'home' && AREA_ID) {
-      // Set a filing context first - header then shows "Filing into <area>"
-      // which is a better hero than the empty-state hint.
-      await page.goto(`${BASE}/areas/${AREA_ID}`, { waitUntil: 'networkidle' });
-      await page.click('button:has-text("File things here")');
-      await page.waitForTimeout(800);
-    } else {
-      await page.goto(BASE + path, { waitUntil: 'networkidle' });
-    }
+    await page.goto(BASE + path, { waitUntil: 'networkidle' });
     if (scrollTo) await page.locator(`text=${scrollTo}`).first().scrollIntoViewIfNeeded();
     await page.waitForTimeout(1200);
     const buf = await page.screenshot();
