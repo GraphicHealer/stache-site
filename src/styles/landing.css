@@ -249,7 +249,13 @@ html.js .reveal.visible {
 
 @media (prefers-reduced-motion: reduce) {
 	html { scroll-behavior: auto; }
-	.reveal { opacity: 1; transform: none; transition: none; }
+	/* Must out-specify html.js .reveal or the base hidden/animated state wins. */
+	html.js .reveal,
+	html.js .reveal.visible {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
 	.scroll-cue { animation: none; }
 }
 

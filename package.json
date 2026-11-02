@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "check:links": "node tools/linkcheck.mjs",
+    "check:links": "node tools/linkcheck.mjs && node tools/linkcheck-selftest.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
