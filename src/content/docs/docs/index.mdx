@@ -1,18 +1,53 @@
 ---
 title: Stache documentation
-description: Self-hosted, photo-first home inventory. Snap a photo, label the bin, find it later.
+description: A practical guide to installing, using, and looking after your self-hosted home inventory.
 ---
 
-**"Where is my stuff?"** — snap a photo, drop the thing in a bin, scan the bin's QR label. No names required, no categories, no forms. Finding it later is search, photo similarity, or just looking inside the bin from your couch.
+Stache helps you remember where your things are. Take a photo, put the item in a bin, and scan the bin's QR label when you need it again.
 
-Everything runs in a single container — no database service, no external anything. Works offline, works on phones, works on Zebra handhelds with a scan trigger.
+You don't have to name everything or build a perfect catalog. A photo and a place to put it are enough to get started. Add details when they're useful.
 
-## Pick your install
+<img src="/shots/item.webp" alt="An item saved in Stache with its photo and details" width="300" />
 
-Stache is a standalone app — one container, no database service, no required extras. **[Three ways to run it](/docs/getting-started/)**, pick one:
+## Start with the basics
 
-- **[Docker](/docs/getting-started/docker/)** — the standard route; works on any Docker host.
-- **[Home Assistant](/docs/getting-started/home-assistant/)** — easiest *if you already run Home Assistant*: one click from the add-on store.
-- **[Unraid](/docs/getting-started/unraid/)** — single appdata folder, Community Applications template.
+<CardGrid stagger>
+	<Card title="Install Stache" icon="rocket">
+		Choose the way you want to run Stache: Docker, Home Assistant, or Unraid.
+		<LinkCard href="/docs/getting-started/" title="Choose an installation" />
+	</Card>
+	<Card title="Create your first bin" icon="package">
+		Make a few QR labels, attach one to a bin, and file your first item.
+		<LinkCard href="/docs/getting-started/first-steps/" title="Follow the first-run guide" />
+	</Card>
+	<Card title="Learn the everyday workflow" icon="camera">
+		See how photos, areas, labels, and search fit together.
+		<LinkCard href="/docs/using/adding-items/" title="Start adding items" />
+	</Card>
+</CardGrid>
 
-Then head to **[Your first bin](/docs/getting-started/first-steps/)** to print labels and file your first item in about two minutes.
+## How Stache is organized
+
+- **Items** are the things you own. Each item needs a photo; names, descriptions, quantities, tags, and purchase details are optional.
+- **Areas** are the places where things live: rooms, closets, shelves, drawers, and bins. Areas can contain other areas.
+- **Labels** are QR codes assigned to areas. Scan one to open that place and see what's inside.
+- **Search** helps you find an item by words, barcode, or a similar photo. You can also scan the label on its container.
+
+## Find the guide you need
+
+- [Add and update items](/docs/using/adding-items/)
+- [Organize areas and QR labels](/docs/using/labels-areas/)
+- [Find something later](/docs/using/finding/)
+- [Track things that are out or lent](/docs/using/out-tracking/)
+- [Print QR labels](/docs/printing/)
+- [Connect Home Assistant](/docs/extras/ha-sensors/)
+
+## A few things worth knowing
+
+Stache runs as one application with an embedded database; you don't need to set up a separate database server. Your inventory stays on the machine where you host it unless you choose to connect an external service. Built-in recognition and photo similarity can run locally. AI suggestions are optional to keep, edit, or ignore.
+
+For installation-specific details, start with [Docker](/docs/getting-started/docker/), [Home Assistant](/docs/getting-started/home-assistant/), or [Unraid](/docs/getting-started/unraid/). For backups and operational settings, see [Backups](/docs/extras/backups/) and [Configuration](/docs/reference/configuration/).
+
+<Card title="Source code and support" icon="github">
+	Stache is open source. Browse the [application repository](https://github.com/GraphicHealer/Stache) for releases, issues, and source code.
+</Card>
