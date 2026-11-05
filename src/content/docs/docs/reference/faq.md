@@ -1,40 +1,62 @@
 ---
-title: FAQ
-description: Common questions about running and using Stache.
+title: Troubleshooting and FAQ
+description: Answers to common questions and practical first checks when Stache is not behaving as expected.
 ---
 
-## Why SQLite and not Postgres/MySQL?
+## Installation and storage
 
-Portability. Embedded SQLite means a single container with no database service — the whole app state is one folder, which is what makes it work as a Home Assistant add-on, on Unraid, or on a Pi. Backup is copying a directory.
+### Why SQLite instead of Postgres or MySQL?
 
-## Does the camera work over `http://<lan-ip>:8080`?
+Stache uses an embedded SQLite database so it can run as one application without a separate database service. The database, photos, and model files live together under `/data`, which makes deployment and backup straightforward.
 
-Partially. Browsers only allow the live viewfinder in a [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) — `localhost` and HTTPS count, `http://192.168.x.x` doesn't. Over plain HTTP, photo capture falls back to the file picker and everything else still works. For the full experience use HTTPS, the HA ingress URL, or `localhost`.
+### Where is my inventory stored?
 
-## How much RAM does it need?
+In the persistent data directory mounted at `/data`. It contains the database, photos, downloaded AI models, and scheduled backups. Make sure the volume or appdata mapping is persistent before adding inventory.
 
-~200 MB idle. Photo similarity (CLIP) loads lazily on first use and brings it to ~450–550 MB warm. `STACHE_ML_LEVEL=0` disables ML on tiny hosts (`STACHE_NO_ML=1` works too); everything else keeps working.
+### Can I move Stache to another host?
 
-## Do I need the AI stuff?
+Stop the application, make a complete backup of its data directory, move that data to the new host, and mount it at the same location. Keep a copy of the original until you have confirmed the new instance works.
 
-It's on by default, but you don't have to think about it — it just *suggests* names/tags/descriptions in the background and you confirm or ignore. Everything works with it off too (`STACHE_ML_LEVEL=0`, or the toggle in Settings). See [AI suggestions](/docs/using/ai/).
+## Browser and mobile
 
-## Is there a mobile app?
+### Does the camera work over `http://<lan-ip>:8080`?
 
-Stache is a PWA — open it on your phone and "Add to Home Screen." It works offline too: photos and scans queue locally and sync once your server is reachable again. Things that need the outside world — barcode lookups, a remote AI provider — wait for a connection; everything local keeps working.
+Not fully. Browsers require a secure context for live camera access. HTTPS and localhost qualify; a plain HTTP LAN address generally does not. In that case, photo capture falls back to the file picker. Use HTTPS or Home Assistant ingress for the full experience.
 
-## How do backups work?
+### Is there a mobile app?
 
-Everything lives in `/data` — copy it and you're backed up. There's also an optional built-in scheduler. See [Backups](/docs/extras/backups/).
+Stache is a progressive web app. Open it in your phone's browser and use the browser's **Add to Home Screen** option. Offline actions can be queued locally and synchronized when the server is reachable again. Features that require an external service or network lookup need connectivity.
 
-## Can other people sign up?
+### Why is a feature unavailable on my phone?
 
-Only the first account is open signup. After that, accounts are created by logged-in members (Settings → Household) — there's no public registration to accidentally expose.
+Check that you are using the HTTPS address, not a plain HTTP LAN address. Camera, clipboard, and installable/offline PWA capabilities depend on the browser's secure-context rules.
 
-## What can an MCP connection see?
+## AI and performance
 
-Shared items only — private items are never exposed. Connections are individually revocable and can be read-only. See [MCP connections](/docs/extras/mcp/).
+### Do I need to configure AI?
 
-## Something's broken — where are the logs?
+No. Built-in recognition is available by default and makes suggestions in the background. You decide whether to accept or edit them; it does not silently replace item details. You can turn AI off in Settings or set `STACHE_ML_LEVEL=0`.
 
-`docker logs` on the container (or the add-on's Log tab in Home Assistant). Issues go to the [GitHub tracker](https://github.com/GraphicHealer/Stache/issues).
+### How much memory does Stache use?
+
+The application idles at roughly 200 MB in the documented setup. Photo-similarity and recognition models load on demand and increase memory use; the warm footprint depends on the selected model and workload. Set `STACHE_ML_LEVEL=0` on constrained hosts if needed.
+
+## Accounts and privacy
+
+### Can anyone sign up?
+
+The first account is created during initial setup. After that, household accounts are created by logged-in members from **Settings → Household**.
+
+### What can an MCP connection see?
+
+MCP connections can access shared household items. Private items are excluded. Each connection has its own URL and bearer token, and can be configured as read-only or read-write.
+
+## Troubleshooting checklist
+
+1. **Check the app is running.** For Docker, use `docker ps` and `docker logs <container-name>`. In Home Assistant, open the add-on's **Log** tab.
+2. **Check the health endpoint.** From a machine that can reach Stache, open `http://<host>:8080/api/health` (adjust the host and port).
+3. **Check persistent storage.** Confirm the configured data directory is mounted and writable. Do not remove or recreate the volume as a troubleshooting shortcut; it contains your inventory.
+4. **Check proxy settings.** If Stache is behind a reverse proxy, verify `STACHE_BASE_URL` and only enable `STACHE_TRUST_PROXY=1` when requests pass through that trusted proxy.
+5. **Check available memory and model settings.** On small hosts, disable ML temporarily with `STACHE_ML_LEVEL=0` to see whether model memory is involved.
+
+If the problem persists, collect the Stache version, deployment type, relevant logs, and steps to reproduce it. Remove bearer tokens, passwords, and private inventory details before sharing logs in the [GitHub issue tracker](https://github.com/GraphicHealer/Stache/issues).
