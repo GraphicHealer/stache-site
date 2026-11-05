@@ -1,0 +1,337 @@
+openapi: 3.0.3
+info:
+  title: Stache REST API
+  version: "1"
+  description: |
+    Public bearer-token API for the self-hosted Stache inventory app.
+    Create tokens in the app's **Settings → API tokens** - each is revocable
+    and scoped `read` or `read-write`. Tokens see **shared items only**;
+    private items are never exposed.
+
+    The base URL is wherever your Stache instance runs - the default below
+    is the usual local address, so "Try it out" works against your own
+    install while reading the docs.
+  contact:
+    name: Stache
+    url: https://github.com/GraphicHealer/Stache
+servers:
+  - url: http://localhost:8080
+    description: Your local Stache instance
+tags:
+  - name: Areas
+  - name: Items
+  - name: Labels
+paths:
+  /api/v1/areas:
+    get:
+      tags: [Areas]
+      summary: List areas
+      description: Every non-archived area with its shared item count.
+      responses:
+        "200":
+          description: Area list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  areas:
+                    type: array
+                    items: { $ref: "#/components/schemas/Area" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+  /api/v1/areas/{id}:
+    get:
+      tags: [Areas]
+      summary: Area detail + contents
+      parameters: [{ $ref: "#/components/parameters/areaId" }]
+      responses:
+        "200":
+          description: Area with its shared, non-hidden items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  area: { $ref: "#/components/schemas/Area" }
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/Item" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+  /api/v1/items:
+    get:
+      tags: [Items]
+      summary: Search or list items
+      description: |
+        Substring match across name, description, barcode, and tags -
+        shared, non-hidden items only, capped at 50 results.
+      parameters:
+        - name: q
+          in: query
+          schema: { type: string }
+          description: Search text; omitted = list all
+      responses:
+        "200":
+          description: Matching items
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: "#/components/schemas/Item" }
+                  total: { type: integer }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+    post:
+      tags: [Items]
+      summary: File a new item
+      description: |
+        JSON body or multipart form. The area is resolved by `area_id`,
+        `area_label` (QR code), or `area_name` (find-or-create). Attach
+        photos as multipart files or pass `photo_url` for the server to
+        fetch (http/https only). Records an undoable `item.filed` event.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ItemCreate" }
+          multipart/form-data:
+            schema: { $ref: "#/components/schemas/ItemCreateMultipart" }
+      responses:
+        "201":
+          description: Item created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item: { $ref: "#/components/schemas/Item" }
+                  event_id: { type: string, description: Undo event id }
+        "400":
+          description: Bad input (missing area, bad image, bad photo_url)
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/ReadOnly" }
+  /api/v1/items/{id}:
+    get:
+      tags: [Items]
+      summary: Item detail
+      parameters: [{ $ref: "#/components/parameters/itemId" }]
+      responses:
+        "200":
+          description: Item + photo URLs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item: { $ref: "#/components/schemas/Item" }
+                  photos:
+                    type: array
+                    items: { $ref: "#/components/schemas/Photo" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+    patch:
+      tags: [Items]
+      summary: Update an item
+      description: |
+        Fields and/or status. Status transitions record `item.status` events
+        with the same payload the app uses, so undo works identically.
+        `gone` hides the item; `home` clears out/lent state.
+      parameters: [{ $ref: "#/components/parameters/itemId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ItemPatch" }
+      responses:
+        "200":
+          description: Updated item + undo event ids
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  item: { $ref: "#/components/schemas/Item" }
+                  event_ids:
+                    type: array
+                    items: { type: string }
+        "400": { description: Bad status / unknown area }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/ReadOnly" }
+  /api/v1/items/{id}/move:
+    post:
+      tags: [Items]
+      summary: Move an item to a different area
+      parameters: [{ $ref: "#/components/parameters/itemId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/AreaRef" }
+      responses:
+        "200":
+          description: Moved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok: { type: boolean }
+                  event_id: { type: string }
+        "400": { description: Area not found }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/ReadOnly" }
+  /api/v1/labels/{code}:
+    get:
+      tags: [Labels]
+      summary: Resolve a QR label
+      parameters: [{ $ref: "#/components/parameters/labelCode" }]
+      responses:
+        "200":
+          description: Label + its assigned area (null if unclaimed)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  label:
+                    type: object
+                    properties:
+                      code: { type: string }
+                      printed_at: { type: string, format: date-time, nullable: true }
+                  area:
+                    oneOf:
+                      - $ref: "#/components/schemas/Area"
+                      - type: "null"
+        "404": { $ref: "#/components/responses/NotFound" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API token from Settings → API tokens
+  parameters:
+    areaId:
+      name: id
+      in: path
+      required: true
+      schema: { type: string }
+    itemId:
+      name: id
+      in: path
+      required: true
+      schema: { type: string }
+    labelCode:
+      name: code
+      in: path
+      required: true
+      schema: { type: string }
+      description: Printed QR code, e.g. ST-3HK7V98T
+  responses:
+    Unauthorized:
+      description: Missing or invalid bearer token
+    ReadOnly:
+      description: Token has read scope - writes are forbidden
+    NotFound:
+      description: Not found (or hidden from the token)
+  schemas:
+    Area:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        parent_id: { type: string, nullable: true }
+        category: { type: string, nullable: true }
+        item_count: { type: integer }
+    Item:
+      type: object
+      properties:
+        id: { type: string }
+        area_id: { type: string }
+        name: { type: string, nullable: true }
+        description: { type: string, nullable: true }
+        quantity: { type: integer }
+        barcode: { type: string, nullable: true }
+        tags:
+          type: array
+          items: { type: string }
+          nullable: true
+        status:
+          type: string
+          enum: [home, out, lent, unaccounted, gone]
+        lent_to: { type: string, nullable: true }
+        out_since: { type: string, format: date-time, nullable: true }
+        ai_name: { type: string, nullable: true }
+        ai_description: { type: string, nullable: true }
+        ai_tags:
+          type: array
+          items: { type: string }
+          nullable: true
+        created_at: { type: string, format: date-time }
+    Photo:
+      type: object
+      properties:
+        id: { type: string }
+        url: { type: string }
+        thumb: { type: string }
+    AreaRef:
+      type: object
+      description: Exactly one field identifies the target area.
+      properties:
+        area_id: { type: string }
+        area_label: { type: string, description: QR label code }
+        area_name: { type: string, description: Find-or-create by name }
+    ItemCreate:
+      allOf:
+        - $ref: "#/components/schemas/AreaRef"
+        - type: object
+          properties:
+            name: { type: string, maxLength: 200 }
+            description: { type: string, maxLength: 2000 }
+            quantity: { type: integer, minimum: 1, default: 1 }
+            barcode: { type: string, maxLength: 64 }
+            tags:
+              type: array
+              items: { type: string, maxLength: 40 }
+              maxItems: 20
+            photo_url:
+              type: string
+              format: uri
+              description: Server fetches this image and attaches it
+    ItemCreateMultipart:
+      type: object
+      description: Same fields as the JSON body plus one or more image files.
+      properties:
+        area_id: { type: string }
+        area_label: { type: string }
+        area_name: { type: string }
+        name: { type: string }
+        description: { type: string }
+        quantity: { type: integer }
+        barcode: { type: string }
+        tags: { type: string }
+        photo:
+          type: string
+          format: binary
+    ItemPatch:
+      type: object
+      properties:
+        area_id: { type: string }
+        name: { type: string, nullable: true }
+        description: { type: string, nullable: true }
+        quantity: { type: integer, minimum: 1 }
+        barcode: { type: string, nullable: true }
+        tags:
+          type: array
+          items: { type: string }
+          nullable: true
+        status:
+          type: string
+          enum: [home, out, lent, unaccounted, gone]
+        lent_to: { type: string, nullable: true }
+security:
+  - bearerAuth: []

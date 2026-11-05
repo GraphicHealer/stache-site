@@ -36,6 +36,10 @@ export default defineConfig({
     { label: 'Home Assistant sensors', slug: 'docs/extras/ha-sensors' },
     { label: 'MCP connections', slug: 'docs/extras/mcp' },
    ]},
+   { label: 'API', items: [
+    { label: 'API overview', slug: 'docs/api' },
+    { label: 'Interactive API reference', link: '/api/', attrs: { target: '_blank' } },
+   ]},
    { label: 'Administration', items: [
     { label: 'Backups and restore', slug: 'docs/extras/backups' },
     { label: 'Configuration reference', slug: 'docs/reference/configuration' },

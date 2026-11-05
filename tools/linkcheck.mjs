@@ -37,6 +37,11 @@ export function runSiteLinkCheck(root) {
       if (f.endsWith('.astro')) routes.add('/' + f.replace(/\.astro$/, '/'));
     }
   }
+  // Static assets in public/ serve at their verbatim path (no trailing slash).
+  const publicDir = path.join(root, 'public');
+  if (fs.existsSync(publicDir)) {
+    walk(publicDir, (p) => routes.add('/' + path.relative(publicDir, p).replace(/\\/g, '/')));
+  }
 
   // GitHub-style heading slugs, matching what Starlight/rehype-slug emits.
   const slugify = (h) =>
@@ -59,7 +64,8 @@ export function runSiteLinkCheck(root) {
     if (/^[a-z]+:/i.test(t)) return; // external scheme (https:, mailto:, ...)
     if (t.startsWith('/')) {
       const route = t.endsWith('/') ? t : t + '/';
-      if (!routes.has(route)) broken.push({ file, target: raw, why: 'no such route' });
+      // Public assets live at their exact path; pages at route + trailing slash.
+      if (!routes.has(t) && !routes.has(route)) broken.push({ file, target: raw, why: 'no such route' });
       return;
     }
     // Relative link - resolve against the markdown file's location.

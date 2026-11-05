@@ -1,0 +1,150 @@
+---
+// Standalone Swagger UI page - not Starlight, styled to match the brand.
+const title = 'Stache API';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} · stacheit.app</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" />
+    <style>
+      :root {
+        --bg: #111318;
+        --surface: #181b21;
+        --border: #2a2e36;
+        --text: #e8eaed;
+        --muted: #9aa0a8;
+        --accent: #f2b233;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 24px;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .topbar img { height: 28px; }
+      .topbar h1 { font-size: 18px; font-weight: 600; margin: 0; }
+      .topbar nav { margin-left: auto; display: flex; gap: 8px; }
+      .topbar nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+      }
+      .topbar nav a:hover { color: var(--accent); border-color: var(--accent); }
+      .swagger-ui .topbar { display: none; } /* swagger's own topbar off */
+      /* Dark-theme overrides for swagger UI */
+      .swagger-ui {
+        --opblock-bg-post: rgba(73, 204, 144, 0.06);
+        color: var(--text);
+        background: transparent;
+      }
+      .swagger-ui .info .title,
+      .swagger-ui .info h1, .swagger-ui .info h2, .swagger-ui .info h3,
+      .swagger-ui .info h4, .swagger-ui .info h5,
+      .swagger-ui .opblock .opblock-summary-description,
+      .swagger-ui .opblock .opblock-summary-path,
+      .swagger-ui .opblock-section-header h4,
+      .swagger-ui .scheme-container,
+      .swagger-ui h1, .swagger-ui h2, .swagger-ui h3, .swagger-ui h4, .swagger-ui h5,
+      .swagger-ui p, .swagger-ui label, .swagger-ui span:not(.arrow),
+      .swagger-ui .model, .swagger-ui .model-title, .swagger-ui .prop-name,
+      .swagger-ui table thead tr td, .swagger-ui table thead tr th,
+      .swagger-ui .response-col_status, .swagger-ui .response-col_description,
+      .swagger-ui .parameter__name, .swagger-ui .parameter__type,
+      .swagger-ui .parameter__in, .swagger-ui .description,
+      .swagger-ui .markdown p, .swagger-ui .markdown h1, .swagger-ui .markdown h2,
+      .swagger-ui .markdown h3, .swagger-ui .markdown h4, .swagger-ui .markdown h5,
+      .swagger-ui .markdown li, .swagger-ui .markdown span, .swagger-ui .markdown code,
+      .swagger-ui .renderedMarkdown p, .swagger-ui .renderedMarkdown li,
+      .swagger-ui .model-box .model, .swagger-ui .model-box-control,
+      .swagger-ui .prop-type, .swagger-ui .json-schema-2020-12__title,
+      .swagger-ui .json-schema-2020-12-keyword__name-primary,
+      .swagger-ui .json-schema-2020-12-keyword__name-secondary,
+      .swagger-ui .json-schema-2020-12__attribute,
+      .swagger-ui section.models h4, .swagger-ui section.models h5,
+      .swagger-ui .model .prop {
+        color: var(--text) !important;
+      }
+      .swagger-ui .opblock {
+        background: var(--surface) !important;
+        border-color: var(--border) !important;
+      }
+      .swagger-ui .opblock .opblock-section-header,
+      .swagger-ui .opblock-section-header,
+      .swagger-ui .tab li, .swagger-ui .tab .tab-item {
+        background: transparent !important;
+        border-color: var(--border) !important;
+      }
+      .swagger-ui .model-box, .swagger-ui .models {
+        background: var(--surface) !important;
+      }
+      .swagger-ui section.models .model-container {
+        background: var(--surface) !important;
+        border-color: var(--border) !important;
+      }
+      .swagger-ui select, .swagger-ui input[type=text],
+      .swagger-ui input[type=password], .swagger-ui textarea {
+        background: var(--bg) !important;
+        color: var(--text) !important;
+        border-color: var(--border) !important;
+      }
+      .swagger-ui code, .swagger-ui .microlight {
+        color: var(--accent) !important;
+      }
+      .swagger-ui .scheme-container {
+        box-shadow: none !important;
+        border-bottom: 1px solid var(--border);
+      }
+      .swagger-ui .wrapper {
+        max-width: 1460px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      #swagger-ui { min-height: 80vh; }
+    </style>
+  </head>
+  <body>
+    <div class="topbar">
+      <img src="/favicon.svg" alt="Stache" />
+      <h1>Stache API</h1>
+      <nav>
+        <a href="/docs/">← Docs</a>
+        <a href="https://github.com/GraphicHealer/Stache">GitHub</a>
+        <a href="/">Home</a>
+      </nav>
+    </div>
+    <div id="swagger-ui"></div>
+    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+    <script>
+      window.onload = () => {
+        SwaggerUIBundle({
+          url: '/api/openapi.yaml',
+          dom_id: '#swagger-ui',
+          deepLinking: true,
+          defaultModelsExpandDepth: 1,
+          docExpansion: 'list',
+          persistAuthorization: true,
+        });
+      };
+    </script>
+  </body>
+</html>
