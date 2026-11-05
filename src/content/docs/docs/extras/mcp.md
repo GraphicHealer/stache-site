@@ -1,30 +1,40 @@
 ---
 title: MCP connections
-description: Let ChatGPT, Claude, and other assistants answer "where is my soldering iron?"
+description: Connect AI assistants to shared Stache inventory data using the Model Context Protocol.
 ---
 
-Stache can expose your inventory to AI assistants over **MCP** (Model Context Protocol). Off by default — you create each connection yourself in **Settings → MCP connections**, and every connection is individually revocable.
+Stache can make your inventory available to AI assistants through **MCP** (Model Context Protocol). This lets an assistant answer questions such as "Where is my soldering iron?" or, if you grant write access, help file an item.
 
-## How it works
+MCP is off until you create a connection. Manage connections in **Settings → MCP connections**. Each connection can be revoked independently.
 
-Each connection gets:
+## Create a connection
 
-- its own URL — `/mcp/<slug>`
-- its own **bearer token** (separate from the URL slug — revoke either independently)
-- a scope: **read** or **read-write**
+Each connection has its own:
 
-Write-capable connections get `add_item` (file an item — resolves the area by id, label, or name) and `update_item` (fields and status — same undo semantics as the UI). Read-only connections simply don't have the write tools registered.
+- **URL**, using the `/mcp/<slug>` path.
+- **Bearer token**, separate from the URL slug. You can revoke the token independently.
+- **Access scope**, either read-only or read-write.
 
-## What assistants can do
+Treat the URL and token as credentials. Only share them with the assistant or service that should have access.
 
-Eight tools in total: search, list areas, get contents, item details, move items, resolve a label, add item, update item. Enough for "where is my soldering iron," filing receipts, or logging things by voice.
+## Choose what the assistant can do
 
-Writes through MCP are attributed (`actor = mcp:<slug>`) and undoable like everything else.
+Read-only connections can search and inspect shared inventory information. Read-write connections also register tools for adding and updating items.
+
+The available tools cover searching items, listing areas, viewing area contents, getting item details, moving items, resolving a QR label, adding an item, and updating an item. For example, an assistant can find an item's storage area, file an item into a known area, or update its status.
+
+Changes made through MCP are recorded with an actor such as `mcp:<slug>`. They follow the same history and undo behavior as changes made in the Stache interface.
+
+## Understand privacy boundaries
 
 :::caution
-MCP sees **shared items only** — private items are never exposed, regardless of connection scope.
+MCP connections can access **shared items only**. Private items are never exposed, regardless of whether a connection is read-only or read-write.
 :::
 
-## Exposing externally
+Create a separate connection for each assistant or service. If a connection is no longer needed, revoke it in **Settings → MCP connections**.
 
-To reach an assistant over the internet, front Stache with HTTPS (see the note on the [Docker](/docs/getting-started/docker/) page) and set `STACHE_BASE_URL` so generated links carry the public origin.
+## Make Stache reachable outside your network
+
+An assistant hosted outside your home network needs a route to your Stache server. Put Stache behind an HTTPS reverse proxy and configure `STACHE_BASE_URL` to its public address so generated links use the correct origin.
+
+See the [Docker installation guide](/docs/getting-started/docker/) for reverse-proxy and HTTPS notes, and [Configuration](/docs/reference/configuration/) for the related environment variables.
