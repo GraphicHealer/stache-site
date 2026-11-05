@@ -25,9 +25,9 @@ export default defineConfig({
     { label: 'Finding things', slug: 'docs/using/finding' },
     { label: 'Tracking items that are out', slug: 'docs/using/out-tracking' },
     { label: 'Household members and privacy', slug: 'docs/using/household' },
-   ]},
-   { label: 'Features', items: [
     { label: 'AI suggestions', slug: 'docs/using/ai' },
+   ]},
+   { label: 'Printing', items: [
     { label: 'Printing labels', slug: 'docs/printing' },
     { label: 'Printer setup', slug: 'docs/printing/printers' },
     { label: 'Printing on label sheets', slug: 'docs/printing/sheets' },
