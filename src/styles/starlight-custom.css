@@ -25,9 +25,7 @@
 .sl-markdown-content { line-height: 1.75; }
 .sl-markdown-content h2 {
  margin-top: 2.5rem;
- margin-bottom: .85rem;
- padding-bottom: .35rem;
- border-bottom: 1px solid var(--sl-color-hairline);
+ margin-bottom: .75rem;
  font-size: 1.45rem;
  line-height: 1.3;
 }
