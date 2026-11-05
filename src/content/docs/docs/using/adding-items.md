@@ -1,46 +1,57 @@
 ---
-title: Adding items
-description: A photo is a complete record — everything else is optional.
+title: Adding and updating items
+description: Save an item with a photo first, then add details whenever they are useful.
 ---
 
-An item in Stache is, at minimum, **a photo**. Everything else — name, description, quantity, tags — is optional and can be added whenever. Or never.
+An item needs only one thing to get started: **a photo**. A name, description, quantity, and tags are optional. You can add them now or come back later, so recording something does not become a long data-entry task.
 
-## The fast path
+## Add an item
 
-1. Scan the bin's label (or open the area) so new photos file into it.
-2. Snap a photo. That's it — it's filed.
+The quickest way to file something is to open its storage location first:
 
-Work in the other order too: snap first, pick the area after. Useful when your hands are full.
+1. Scan the QR label on a bin, shelf, or other area. You can also browse to the area in Stache.
+2. Take a photo.
+3. Save the item. Stache places it in the area you opened.
 
-## The optional extras
+You can also take the photo first and choose an area afterward. This is useful when you are photographing several things before deciding where to store them.
 
-Open any item to add:
+<img src="/shots-docs/item.webp" alt="An item page showing a photo, name, quantity, and available actions" width="300" />
 
-- **Name and description** — searchable, editable anytime
-- **Quantity** — for consumables and multiples
-- **Tags** — free-form, joins the search surface
-- **Details** — purchase date, price, retailer, serial number, warranty end, restock-below threshold
-- **"Goes with" links** — connect things that belong together (charger ↔ camera, lid ↔ pot)
-- **More photos** — an item can have several
+## Add or change item details
 
-<img src="/shots-docs/item.webp" alt="An item page showing a photo, name, quantity, and actions" width="300" />
+Open an item to add or edit its information:
 
-## Receipts
+| Detail | How it helps |
+|---|---|
+| Name and description | Identify the item and add searchable notes. |
+| Quantity | Track supplies and multiples. |
+| Tags | Add your own searchable keywords. |
+| Purchase details | Record purchase date, price, retailer, serial number, warranty end date, or a restock-below threshold. |
+| Goes with | Link related things, such as a camera and its charger or a pot and its lid. |
+| Additional photos | Keep several views of the same item together. |
 
-Photograph a receipt and Stache can split it into separate items — one photo, many items. Handy for filing a haul without re-photographing everything.
+You can update these details whenever something changes. For example, adjust a quantity as you use supplies or add a serial number when you find the original packaging.
 
-## AI suggestions
+## Create items from a receipt or group photo
 
-New photos get suggested names, descriptions, and tags in the background via [AI suggestions](/docs/using/ai/) — always as suggestions you confirm, never silent overwrites. "Split pile" can even break a photo of many things into separate items you approve. It's on by default; turn it off in Settings if you'd rather not use it.
+Stache can read a photographed receipt and split it into separate items. It can also suggest splitting a photo containing several objects into individual items. Review the proposed records before saving them.
 
-## The Review queue
+## Review AI suggestions
 
-**Review** collects things worth a glance: unnamed items, possible duplicates (merge either way, or keep separate), and items whose AI pass failed (one-tap retry). There's no obligation — it's a tidy-up list, not a chore queue.
+When AI recognition is enabled, Stache processes new photos in the background and may suggest a name, description, and tags. Suggestions do not silently replace the item's saved details. You choose what to accept or edit.
 
-## Moving items
+The **Review** queue brings together items that may need attention:
 
-To relocate things in bulk, multi-select cards on a bin page (or on Browse) — tap to select, then use the sticky selection bar's **Move…**. Undoable like everything else.
+- Items that do not have a name yet.
+- Possible duplicates, which you can merge or keep separate.
+- Items where recognition did not finish, which you can retry.
 
-## Undo
+Review is an optional way to tidy up your inventory, not a required step. See [AI suggestions](/docs/using/ai/) to learn about local models, remote providers, and privacy.
 
-Filing an item is undoable, like most actions. The toast that appears after each action has **Undo** — or find it later in the item's history.
+## Move items
+
+To move several items together, open a bin or the **Browse** page and select the item cards. Use the selection bar to choose **Move…**, then select the destination area. You can also move an item individually from its page.
+
+## Undo a change
+
+Many item actions can be undone. Use **Undo** in the confirmation message that appears after an action. You can also review an item's history to see earlier changes; undo follows the order of changes, so a newer change may need to be undone first.
