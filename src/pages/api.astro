@@ -10,7 +10,7 @@ const title = 'Stache API';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title} · stacheit.app</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui.css" />
+    <link rel="stylesheet" href="/vendor/swagger-ui/swagger-ui.css" />
     <style>
       :root {
         --bg: #111318;
@@ -133,8 +133,8 @@ const title = 'Stache API';
       </nav>
     </div>
     <div id="swagger-ui"></div>
-    <script src="https://cdn.jsdelivr.net/npm/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
-    <script>
+    <script is:inline src="/vendor/swagger-ui/swagger-ui-bundle.js"></script>
+    <script is:inline>
       window.onload = () => {
         SwaggerUIBundle({
           url: '/api/openapi.yaml',
