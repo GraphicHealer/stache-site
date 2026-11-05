@@ -11,7 +11,7 @@ export default defineConfig({
   social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/GraphicHealer/Stache' }],
   customCss: ['./src/styles/starlight-custom.css'],
   sidebar: [
-   { label: 'Introduction', items: [{ label: 'Documentation home', slug: 'docs' }, { label: 'How Stache works', slug: 'docs/getting-started' }] },
+   { label: 'Introduction', items: [{ label: 'Documentation home', slug: 'docs' }, { label: 'How Stache works', slug: 'docs/concepts' }] },
    { label: 'Get started', items: [
     { label: 'Choose an installation', slug: 'docs/getting-started/index' },
     { label: 'Docker', slug: 'docs/getting-started/docker' },
@@ -28,7 +28,7 @@ export default defineConfig({
    ]},
    { label: 'Features', items: [
     { label: 'AI suggestions', slug: 'docs/using/ai' },
-    { label: 'Printing labels', slug: 'docs/printing/index' },
+    { label: 'Printing labels', slug: 'docs/printing' },
     { label: 'Printer setup', slug: 'docs/printing/printers' },
     { label: 'Printing on label sheets', slug: 'docs/printing/sheets' },
    ]},
