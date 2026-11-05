@@ -11,6 +11,7 @@ const title = 'Stache API';
     <title>{title} · stacheit.app</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="/vendor/swagger-ui/swagger-ui.css" />
+    <link rel="stylesheet" href="/vendor/swagger-ui/swagger-dark.css" />
     <style>
       :root {
         --bg: #111318;
@@ -51,74 +52,11 @@ const title = 'Stache API';
       }
       .topbar nav a:hover { color: var(--accent); border-color: var(--accent); }
       .swagger-ui .topbar { display: none; } /* swagger's own topbar off */
-      /* Dark-theme overrides for swagger UI */
-      .swagger-ui {
-        --opblock-bg-post: rgba(73, 204, 144, 0.06);
-        color: var(--text);
-        background: transparent;
-      }
-      .swagger-ui .info .title,
-      .swagger-ui .info h1, .swagger-ui .info h2, .swagger-ui .info h3,
-      .swagger-ui .info h4, .swagger-ui .info h5,
-      .swagger-ui .opblock .opblock-summary-description,
-      .swagger-ui .opblock .opblock-summary-path,
-      .swagger-ui .opblock-section-header h4,
-      .swagger-ui .scheme-container,
-      .swagger-ui h1, .swagger-ui h2, .swagger-ui h3, .swagger-ui h4, .swagger-ui h5,
-      .swagger-ui p, .swagger-ui label, .swagger-ui span:not(.arrow),
-      .swagger-ui .model, .swagger-ui .model-title, .swagger-ui .prop-name,
-      .swagger-ui table thead tr td, .swagger-ui table thead tr th,
-      .swagger-ui .response-col_status, .swagger-ui .response-col_description,
-      .swagger-ui .parameter__name, .swagger-ui .parameter__type,
-      .swagger-ui .parameter__in, .swagger-ui .description,
-      .swagger-ui .markdown p, .swagger-ui .markdown h1, .swagger-ui .markdown h2,
-      .swagger-ui .markdown h3, .swagger-ui .markdown h4, .swagger-ui .markdown h5,
-      .swagger-ui .markdown li, .swagger-ui .markdown span, .swagger-ui .markdown code,
-      .swagger-ui .renderedMarkdown p, .swagger-ui .renderedMarkdown li,
-      .swagger-ui .model-box .model, .swagger-ui .model-box-control,
-      .swagger-ui .prop-type, .swagger-ui .json-schema-2020-12__title,
-      .swagger-ui .json-schema-2020-12-keyword__name-primary,
-      .swagger-ui .json-schema-2020-12-keyword__name-secondary,
-      .swagger-ui .json-schema-2020-12__attribute,
-      .swagger-ui section.models h4, .swagger-ui section.models h5,
-      .swagger-ui .model .prop {
-        color: var(--text) !important;
-      }
-      .swagger-ui .opblock {
-        background: var(--surface) !important;
-        border-color: var(--border) !important;
-      }
-      .swagger-ui .opblock .opblock-section-header,
-      .swagger-ui .opblock-section-header,
-      .swagger-ui .tab li, .swagger-ui .tab .tab-item {
-        background: transparent !important;
-        border-color: var(--border) !important;
-      }
-      .swagger-ui .model-box, .swagger-ui .models {
-        background: var(--surface) !important;
-      }
-      .swagger-ui section.models .model-container {
-        background: var(--surface) !important;
-        border-color: var(--border) !important;
-      }
-      .swagger-ui select, .swagger-ui input[type=text],
-      .swagger-ui input[type=password], .swagger-ui textarea {
-        background: var(--bg) !important;
-        color: var(--text) !important;
-        border-color: var(--border) !important;
-      }
-      .swagger-ui code, .swagger-ui .microlight {
-        color: var(--accent) !important;
-      }
-      .swagger-ui .scheme-container {
-        box-shadow: none !important;
-        border-bottom: 1px solid var(--border);
-      }
-      .swagger-ui .wrapper {
-        max-width: 1460px;
-        margin: 0 auto;
-        padding: 0 24px;
-      }
+      .swagger-ui .wrapper { max-width: 1460px; margin: 0 auto; padding: 0 24px; }
+      .swagger-ui .scheme-container { box-shadow: none !important; }
+      .swagger-ui .opblock-tag-section h3 { color: var(--text) !important; }
+      .swagger-ui .info .title { color: var(--text) !important; }
+      .swagger-ui a { color: var(--accent); }
       #swagger-ui { min-height: 80vh; }
     </style>
   </head>
