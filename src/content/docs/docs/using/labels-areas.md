@@ -20,7 +20,10 @@ Labels are random codes, such as `ST-K7QX9M2T`. Create a batch from the **Labels
 
 You can print labels before deciding exactly where they will go, then assign them as you organize. Unused labels can be claimed later.
 
-<img src="/shots-docs/browse.webp" alt="The Browse view showing areas and labeled containers" width="300" />
+<picture>
+  <source srcset="/shots-docs/browse-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/browse.webp" alt="The Browse view showing areas and labeled containers" width="300" />
+</picture>
 
 ## Assign more than one label to an area
 

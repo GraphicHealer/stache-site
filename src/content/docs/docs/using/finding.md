@@ -11,7 +11,10 @@ Enter anything you remember about the item. Stache searches names, descriptions,
 
 You can narrow results by area or tag. Selecting an area also searches its nested areas, so a search of the garage can include items stored in its shelves and bins.
 
-<img src="/shots/search.webp" alt="Search results for drill showing a matching item and its storage location" width="300" />
+<picture>
+  <source srcset="/shots/search-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots/search.webp" alt="Search results for drill showing a matching item and its storage location" width="300" />
+</picture>
 
 ## Search with a photo
 

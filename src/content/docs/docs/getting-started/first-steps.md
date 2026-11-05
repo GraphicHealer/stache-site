@@ -15,7 +15,10 @@ Open **Labels**, choose **Add N**, and create a batch of labels. Each label cont
 
 You can start with an ordinary printer, plain paper, and scissors. If you have a dedicated label printer, a DYMO printer, or die-cut label sheets, add the printer from **Labels → Add printer**. See [Printing labels](/docs/printing/) for supported printers and setup options.
 
-<img src="/shots-docs/labels.webp" alt="The Labels page showing a sheet of printable QR labels" width="300" />
+<picture>
+  <source srcset="/shots-docs/labels-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/labels.webp" alt="The Labels page showing a sheet of printable QR labels" width="300" />
+</picture>
 
 ## 3. Attach and claim a label
 

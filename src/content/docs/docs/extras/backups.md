@@ -1,9 +1,12 @@
 ---
 title: Backups and restore
 description: Protect your inventory by backing up the Stache data directory, and learn how to restore it.
----
+---Your Stache data is stored together under `/data`: the SQLite database, item photos, downloaded AI models, and scheduled backups. A complete backup of this directory contains the information needed to move or restore your inventory.
 
-Your Stache data is stored together under `/data`: the SQLite database, item photos, downloaded AI models, and scheduled backups. A complete backup of this directory contains the information needed to move or restore your inventory.
+<picture>
+  <source srcset="/shots-docs/settings-backup-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/settings-backup.webp" alt="The Backup settings section showing download and schedule options" width="300" />
+</picture>
 
 ## Back up the data directory
 

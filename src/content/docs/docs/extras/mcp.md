@@ -7,6 +7,11 @@ Stache can make your inventory available to AI assistants through **MCP** (Model
 
 MCP is off until you create a connection. Manage connections in **Settings → MCP connections**. Each connection can be revoked independently.
 
+<picture>
+  <source srcset="/shots/mcp-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots/mcp.webp" alt="The MCP connections settings showing a configured AI connection" width="300" />
+</picture>
+
 ## Create a connection
 
 Each connection has its own:

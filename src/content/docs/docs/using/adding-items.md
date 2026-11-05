@@ -15,7 +15,10 @@ The quickest way to file something is to open its storage location first:
 
 You can also take the photo first and choose an area afterward. This is useful when you are photographing several things before deciding where to store them.
 
-<img src="/shots-docs/item.webp" alt="An item page showing a photo, name, quantity, and available actions" width="300" />
+<picture>
+  <source srcset="/shots-docs/item-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/item.webp" alt="An item page showing a photo, name, quantity, and available actions" width="300" />
+</picture>
 
 ## Add or change item details
 

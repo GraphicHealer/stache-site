@@ -5,7 +5,20 @@ This guide is for contributors and coding assistants maintaining the Stache webs
 ## What creates the screenshots
 
 - `tools/shots.mjs` — the general capture script: landing-page and docs screenshots from a seeded instance.
+- `tools/seed-items.mjs` — seeds demo items with real Wikimedia photos (drill, tape, lantern, brushes, yarn, headphones, bottles, board game) plus an out item, a lent item, a trashed item, and an MCP connection.
 - `tools/seed-print.mjs` + `tools/shots-print.mjs` — the print-UI pipeline: seeds a disposable instance (accounts, labels, a configured Zebra printer, a saved sheet preset), then captures the Labels/print screens into `public/shots-docs/` (`labels`, `print-printers`, `print-margins`, `print-add`, `print-sheets`).
+
+### Dark and light captures
+
+Every capture runs twice — dark (canonical `name.webp`) and light
+(`name-light.webp`). Docs embed them via `<picture>`:
+
+```html
+<picture>
+  <source srcset="/shots-docs/x-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/x.webp" alt="…" width="300" />
+</picture>
+```
 
 Both sign in to a seeded Stache instance using Playwright, visit routes at a phone-sized viewport, and save WebP images.
 

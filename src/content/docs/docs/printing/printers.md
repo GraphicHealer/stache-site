@@ -12,7 +12,10 @@ Add a printer from **Labels → Add printer**. Each printer has a name, label di
 - **DPI** is the printer resolution, usually 203, 300, or 600.
 - **Margins** set the inset at the top, left, right, and bottom, in millimeters. Each edge is adjusted independently. The default is 1 mm on every side; 0 prints edge-to-edge where the printer allows it.
 
-<img src="/shots-docs/print-add.webp" alt="The add-printer form showing the type picker and connection fields" width="300" />
+<picture>
+  <source srcset="/shots-docs/print-add-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/print-add.webp" alt="The add-printer form showing the type picker and connection fields" width="300" />
+</picture>
 
 ## Zebra / ZPL over the network
 
@@ -29,7 +32,10 @@ Choose **Zebra legacy** for older firmware, such as some GX420d models, whose pr
 If content is off-center, adjust the four margin values rather than repeatedly running media calibration. Increasing the left margin moves the printed content to the right; negative values move it in the opposite direction.
 :::
 
-<img src="/shots-docs/print-margins.webp" alt="The printer edit form showing label size, DPI, and four-sided margin fields" width="300" />
+<picture>
+  <source srcset="/shots-docs/print-margins-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/print-margins.webp" alt="The printer edit form showing label size, DPI, and four-sided margin fields" width="300" />
+</picture>
 
 ## CUPS queue
 

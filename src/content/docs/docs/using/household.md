@@ -15,7 +15,10 @@ The first person to create an account becomes the household administrator. After
 
 Public registration is closed after the initial account is created. Household members should use their own accounts rather than sharing one login, so Stache can record who made each change.
 
-<img src="/shots-docs/settings.webp" alt="Stache settings showing household and connection options" width="300" />
+<picture>
+  <source srcset="/shots-docs/settings-household-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/settings-household.webp" alt="Stache settings showing household and connection options" width="300" />
+</picture>
 
 ## Make an item private
 

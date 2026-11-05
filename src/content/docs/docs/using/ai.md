@@ -7,6 +7,11 @@ Stache's built-in image recognition is enabled by default. When you add a photo,
 
 You can use the built-in models without configuring an outside AI service.
 
+<picture>
+  <source srcset="/shots-docs/item-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/item.webp" alt="An item page showing the AI suggestion card with a suggested name and tags" width="300" />
+</picture>
+
 ## What recognition can do
 
 - Suggest names, descriptions, and tags for new item photos.

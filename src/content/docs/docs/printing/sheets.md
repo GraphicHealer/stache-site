@@ -9,7 +9,10 @@ description: Print die-cut sticker sheets on a regular printer using built-in or
 
 The printer form includes common sheet layouts, including Avery 5160, 5161, 5163, 5167, 5120, and L7651, for Letter and A4 paper. Choose a preset and check the preview to confirm the cell grid matches your stock.
 
-<img src="/shots-docs/print-sheets.webp" alt="The PC print settings showing sheet media, the Avery preset picker, and margins" width="300" />
+<picture>
+  <source srcset="/shots-docs/print-sheets-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/print-sheets.webp" alt="The PC print settings showing sheet media, the Avery preset picker, and margins" width="300" />
+</picture>
 
 ## Create a custom sheet layout
 

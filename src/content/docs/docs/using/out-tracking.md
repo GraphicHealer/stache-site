@@ -23,7 +23,10 @@ When you mark an item as Out or Lent, Stache remembers its home area. Choose **P
 
 The **Out** page lists items marked Out or Lent, their usual storage area, and how long they have been away. It is intentionally a quiet list rather than a set of overdue warnings.
 
-<img src="/shots/out.webp" alt="The Out page listing items that are away or lent" width="300" />
+<picture>
+  <source srcset="/shots/out-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots/out.webp" alt="The Out page listing items that are away or lent" width="300" />
+</picture>
 
 ## Set up optional reminders
 

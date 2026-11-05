@@ -19,7 +19,10 @@ Stache supports several printer types. Choose the one that matches the printer a
 
 See [Printer types](/docs/printing/printers/) for setup instructions and the settings each type supports.
 
-<img src="/shots-docs/print-printers.webp" alt="The Labels page showing configured printers, the label preview, and the default-printer picker" width="300" />
+<picture>
+  <source srcset="/shots-docs/print-printers-light.webp" media="(prefers-color-scheme: light)" />
+  <img src="/shots-docs/print-printers.webp" alt="The Labels page showing configured printers, the label preview, and the default-printer picker" width="300" />
+</picture>
 
 ## Choose rolls or sheets
 
