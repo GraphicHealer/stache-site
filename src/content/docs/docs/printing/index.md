@@ -1,35 +1,39 @@
 ---
 title: Printing labels
-description: Every printer type, style, and setting - pick the right one and print your first label.
+description: Choose a printer, configure label stock, preview the result, and print QR labels for your areas.
 ---
 
-Only **areas** get QR labels in Stache, but there are several ways to get them onto sticker stock. The **Labels** page is where everything print-related lives: minting codes, configuring printers, previewing, and printing.
+Only **areas** receive QR labels in Stache. The **Labels** page brings the printing workflow together: create codes, configure printers, preview labels, and print them.
 
-## Pick a printer type
+## Choose a printer
 
-| Type | Best for | How it connects |
-|------|----------|-----------------|
-| **Zebra / ZPL** | Dedicated label printers | Network (`IP:9100`, raw ZPL) |
-| **Zebra legacy** | Older Zebra firmware (GX420d etc.) | Same, uses `^HH` probe commands |
-| **CUPS queue** | Networked or USB printers on Linux hosts | `lp` command inside the container |
-| **DYMO Connect** | DYMO LabelWriters | DYMO Connect installed on the computer you're browsing from |
-| **Print from this PC** | Any printer your OS can see | Browser's print dialog |
+Stache supports several printer types. Choose the one that matches the printer and computer you have available.
 
-See **[Printer types](/docs/printing/printers/)** for setup details per type.
+| Printer type | Best for | Connection |
+|---|---|---|
+| Zebra / ZPL | Dedicated label printers | Network connection, usually TCP port 9100 |
+| Zebra legacy | Older Zebra firmware, such as some GX420d models | Network connection |
+| CUPS queue | USB or network printers managed by CUPS on a Linux host | CUPS queue |
+| DYMO Connect | DYMO LabelWriter printers | DYMO Connect on the computer running the browser |
+| Print from this PC | Any printer available to your computer | Browser print dialog |
+
+See [Printer types](/docs/printing/printers/) for setup instructions and the settings each type supports.
 
 <img src="/shots-docs/print-printers.webp" alt="The Labels page showing configured printers, the label preview, and the default-printer picker" width="300" />
 
-## Label or sheet?
+## Choose rolls or sheets
 
-- **Label stock** — continuous/die-cut rolls in a dedicated label printer. Set the loaded size in mm.
-- **Sheet** — die-cut sticker sheets (Avery-style) on a regular page printer, laid out at true size on Letter or A4. Presets included; **[custom sheets](/docs/printing/sheets/)** can be built and saved.
+- **Label stock** is used with a dedicated label printer and may be continuous or die-cut. Set the loaded label width and height in millimeters.
+- **Sheet stock** uses die-cut sticker sheets in an ordinary page printer. Stache lays out labels at their actual size on Letter or A4 paper. It includes common presets and supports custom saved layouts.
 
-## The preview
+See [Sheet printing](/docs/printing/sheets/) for presets, custom layouts, and page margins.
 
-Zebra and DYMO printers render the preview through the **actual print pipeline** — the same ZPL or label XML sent to the hardware — so what you see is what prints, margins and all. CUPS/PC previews use the same layout math drawn in the browser.
+## Check the preview
 
-A **"Show generated ZPL"** toggle under the Zebra preview shows the raw command payload — handy for testing in external ZPL viewers.
+For Zebra and DYMO printers, Stache renders the preview through the actual print pipeline: the ZPL or label XML that will be sent to the printer. CUPS and browser printing use the same layout measurements rendered in the browser.
 
-## Default printer
+The Zebra preview includes a **Show generated ZPL** option. Use it to inspect or copy the raw printer commands when troubleshooting or testing with an external ZPL viewer.
 
-The **Default printer** dropdown on the Labels page preselects that printer in every print dialog - bin pages included.
+## Set a default printer
+
+Choose a printer from the **Default printer** dropdown on the Labels page. Stache preselects it in print dialogs throughout the application, including when printing from an individual area.

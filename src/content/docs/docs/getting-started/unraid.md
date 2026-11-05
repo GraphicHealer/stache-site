@@ -1,60 +1,73 @@
 ---
 title: Install on Unraid
-description: Run Stache on Unraid — single container, single appdata folder.
+description: Run Stache in one Docker container with persistent storage in your Unraid appdata share.
 ---
 
-Stache is a single container — no database service, no companion containers. Everything (SQLite database, photos, AI model cache) lives in one appdata folder, so backups are just backing up `/mnt/user/appdata/stache`.
+Stache runs as a single container on Unraid. It does not need a separate database or companion container. The SQLite database, photos, and AI model cache are stored in one appdata directory:
 
-## Install
+`/mnt/user/appdata/stache`
 
-### Community Applications (once listed)
+Back up that directory to protect your inventory.
 
-1. **Apps** tab, search **Stache**, install.
-2. Open **WebUI** (port 8080), create the first household account.
-3. Go to **Labels** to print your first QR batch.
+## Install Stache
 
-### Manual install
+### Community Applications
 
-Fetch the template straight into Unraid's user-template folder over SSH:
+If Stache is listed in Community Applications:
+
+1. Open the **Apps** tab and search for **Stache**.
+2. Select it and follow the installation prompts.
+3. Open the WebUI on port 8080.
+4. Create the first household account.
+5. Open **Labels** to print your first batch of QR labels.
+
+### Install from the Docker template
+
+If you are installing manually, first download the template to Unraid's user-template folder. Connect to Unraid over SSH and run:
 
 ```sh
 wget -O /boot/config/plugins/dockerMan/templates-user/my-stache.xml \
   https://raw.githubusercontent.com/GraphicHealer/Stache/main/unraid/my-stache.xml
 ```
 
-Or drop `unraid/my-stache.xml` on the `flash` share at `config/plugins/dockerMan/templates-user/` by hand. Either way, keep the `my-` prefix — dockerMan treats user templates without it badly.
+You can also copy `unraid/my-stache.xml` from the Stache repository to the `config/plugins/dockerMan/templates-user/` directory on the Unraid `flash` share. Keep the `my-` prefix in the filename; dockerMan expects that prefix for user templates.
 
 Then:
 
-1. **Docker** tab → **Add Container** → the **Template** dropdown now lists **Stache**. Pick it, adjust the port/appdata if needed, Apply.
-2. Open the WebUI on port 8080.
+1. Open the **Docker** tab and select **Add Container**.
+2. Open the **Template** dropdown and choose **Stache**.
+3. Adjust the host port or appdata path if needed, then select **Apply**.
+4. Open the WebUI on the configured port.
 
-Alternatively, fill the fields by hand in **Add Container**:
+### Configure the container manually
+
+If you prefer to create the container without the template, use these values in **Add Container**:
 
 - **Repository:** `ghcr.io/graphichealer/stache:latest`
-- **Network:** bridge
+- **Network:** `bridge`
 - **Port:** `8080`
-- **Path:** `/mnt/user/appdata/stache` → `/data` (RW)
-- **Variable:** `TZ` (your timezone)
-- **Extra Parameters:** `--add-host=host.docker.internal:host-gateway` (lets the optional AI provider URL reach services on the Unraid host, e.g. Ollama at `http://host.docker.internal:11434/v1`)
+- **Path:** `/mnt/user/appdata/stache` mapped to `/data` with read/write access
+- **Variable:** `TZ`, set to your local time zone
+- **Extra Parameters:** `--add-host=host.docker.internal:host-gateway`. This allows an optional AI provider running on the Unraid host, such as Ollama at `http://host.docker.internal:11434/v1`, to be reached from the container.
 
-## Configuration
+## Container settings
 
 | Setting | Default | Notes |
-|---------|---------|-------|
-| WebUI port | `8080` | Remap freely — nothing else depends on it |
-| `/data` path | `/mnt/user/appdata/stache` | DB + photos + models. Back this up |
-| `TZ` | `UTC` | Digest "time of day" uses this |
-| `BETTER_AUTH_SECRET` | auto | Optional; persisted in the db if blank |
-| `STACHE_ML_LEVEL` | `2` | `0` disables ML, `1` Florence-2, `2` LFM2.5-VL (default), `3` Moondream2 |
-| `STACHE_BASE_URL` | unset | Public `https://` URL behind a reverse proxy — enables Secure cookies and fixes label/webhook links |
-| `STACHE_TRUST_PROXY` | unset | `1` behind a reverse proxy so real client IPs are trusted |
+|---|---|---|
+| WebUI port | `8080` | You can change the host port; no other Stache setting depends on it. |
+| `/data` path | `/mnt/user/appdata/stache` | Contains the database, photos, and models. Back up this directory. |
+| `TZ` | `UTC` | Sets the time zone used for digest scheduling. |
+| `BETTER_AUTH_SECRET` | Auto-generated | Optional. When left blank, the secret is persisted in the database settings. |
+| `STACHE_ML_LEVEL` | `2` | `0` disables machine learning, `1` selects Florence-2, `2` selects LFM2.5-VL (default), and `3` selects Moondream2. |
+| `STACHE_BASE_URL` | Unset | Set the public HTTPS URL when Stache is behind a reverse proxy. This enables secure cookies and correct label/webhook links. |
+| `STACHE_TRUST_PROXY` | Unset | Set to `1` behind a trusted reverse proxy so Stache can use forwarded client information. |
 
-The full variable list lives on the [Configuration](/docs/reference/configuration/) page.
+See [Configuration reference](/docs/reference/configuration/) for the full list of environment variables.
 
-## Notes
+## Updates, permissions, and memory
 
-- The container runs as a non-root user; the entrypoint makes sure `/data` is writable before dropping privileges.
-- **Memory:** ~200 MB idle, ~450–550 MB once the AI models are warm. `STACHE_ML_LEVEL=0` skips them entirely.
-- **Updates:** Unraid's normal container update flow. Tagged releases (`ghcr.io/graphichealer/stache:0.5.0` etc.) exist if you prefer pinning.
-- Same plain-HTTP caveat as everywhere: the live camera viewfinder wants HTTPS — see the note on the [Docker](/docs/getting-started/docker/) page.
+- **Permissions:** The container runs as a non-root user. Its entrypoint prepares `/data` so it is writable before the application drops privileges.
+- **Memory:** The application uses roughly 200 MB while idle and around 450–550 MB once the models are warm. Set `STACHE_ML_LEVEL=0` to disable machine learning on a constrained host.
+- **Updates:** Use Unraid's normal container update process. Version-tagged images, such as `ghcr.io/graphichealer/stache:0.5.0`, are available if you prefer to pin a specific release.
+- **HTTPS:** As with other installations, the live camera viewfinder requires HTTPS or another secure browser context. See the [Docker installation guide](/docs/getting-started/docker/) for the plain-HTTP explanation.
+

@@ -1,37 +1,42 @@
 ---
-title: Sheet printing
-description: Die-cut label sheets on regular page printers - presets, custom layouts, and margins.
+title: Printing on label sheets
+description: Print die-cut sticker sheets on a regular printer using built-in or custom layouts.
 ---
 
-**Sheet** media (on CUPS and PC printers) lays labels out on full Letter/A4 pages at true size — for Avery-style die-cut sticker sheets and plain paper you cut yourself.
+**Sheet** media lays labels out on full Letter or A4 pages at their actual size. Use it with Avery-style die-cut sticker sheets or plain paper that you cut yourself. Sheet printing is available for CUPS and **Print from this PC** printers.
 
-## Presets
+## Choose a preset
 
-The picker on the printer form covers common stocks — Avery 5160/5161/5163/5167/5120 and L7651 — on both Letter and A4. Pick one and the preview shows the real cell grid.
+The printer form includes common sheet layouts, including Avery 5160, 5161, 5163, 5167, 5120, and L7651, for Letter and A4 paper. Choose a preset and check the preview to confirm the cell grid matches your stock.
 
-<img src="/shots-docs/print-sheets.webp" alt="The PC print settings showing sheet media selected with the Avery preset picker and margins" width="300" />
+<img src="/shots-docs/print-sheets.webp" alt="The PC print settings showing sheet media, the Avery preset picker, and margins" width="300" />
 
-## Custom sheets
+## Create a custom sheet layout
 
-Choose **Custom…** to define your own layout:
+Choose **Custom…** to describe your sticker sheet:
 
-- **cell w / h** — the sticker's own size in mm
-- **cols / rows** — how many across and down
-- **gap x / y** — space between cells
-- **top / side margins** — the sheet's dead zone before the grid starts
-- **Page** — Letter or A4
+- **Cell width / height** sets the size of each sticker in millimeters.
+- **Columns / rows** sets how many stickers fit across and down the page.
+- **Horizontal / vertical gap** sets the spacing between stickers.
+- **Top / side margins** sets the unused space between the paper edge and the label grid.
+- **Page** selects Letter or A4.
 
-A **live preview** draws the grid as you type — cell count, per-cell size, and whether the layout fits the page.
+The live preview updates as you edit the values. It shows the cell grid, each label's dimensions, and whether the layout fits on the selected page.
 
-:::tip[Save your sheets]
-**Save preset** stores a custom spec by name — saved sheets appear in the picker for *every* sheet-capable printer, CUPS and PC alike. Built-in presets can't be removed; yours can.
+:::tip[Save a custom preset]
+Choose **Save preset** and give the layout a name. Your custom presets appear in the picker for every sheet-capable printer, including CUPS and Print from this PC. Built-in presets cannot be removed; custom presets can.
 :::
 
-## Margins inside each cell
+## Understand the two kinds of margins
 
-Printer margins apply **per label**, not per page — every cell's content insets by your margin values, the same way ZPL's label home works on dedicated printers. The sheet spec's own top/side margins position the grid on the page; your printer margins inset each sticker inside it.
+There are two separate measurements:
 
-## How printing works
+- **Sheet margins** position the entire grid on the paper. They define the top and side dead zones before the first row and column.
+- **Printer margins** inset the printed content inside each individual sticker. These work per label, not per page, and follow the same rules as margins on a dedicated Zebra printer.
 
-- **CUPS sheet** — renders each page as a PNG at 300dpi and `lp`s it.
-- **PC sheet** — opens a dedicated print page sized exactly to the sheet; use 100% scale in the browser dialog.
+Adjust the sheet margins to position the grid on the physical page. Adjust printer margins to position the QR code and text within each sticker.
+
+## How sheet printing works
+
+- **CUPS sheet printing** renders each page as a PNG at 300 DPI, then sends it to the CUPS queue.
+- **PC sheet printing** opens a dedicated print page sized to the selected sheet. Choose 100% or Actual size in the browser print dialog to avoid scaling.

@@ -1,18 +1,41 @@
 ---
 title: Stache documentation
-description: Self-hosted, photo-first home inventory. Snap a photo, label the bin, find it later.
+description: A practical guide to installing, using, and looking after your self-hosted home inventory.
 ---
 
-**"Where is my stuff?"** — snap a photo, drop the thing in a bin, scan the bin's QR label. No names required, no categories, no forms. Finding it later is search, photo similarity, or just looking inside the bin from your couch.
+Stache helps you remember where your things are. Take a photo, put the item in a bin, and scan the bin's QR label when you need it again.
 
-Everything runs in a single container — no database service, no external anything. Works offline, works on phones, works on Zebra handhelds with a scan trigger.
+You do not have to name everything or build a perfect catalog. A photo and a place to put it are enough to get started. Add details when they are useful.
 
-## Pick your install
+<img src="/shots/item.webp" alt="An item saved in Stache with its photo and details" width="300" />
 
-Stache is a standalone app — one container, no database service, no required extras. **[Three ways to run it](/docs/getting-started/)**, pick one:
+## Start with the basics
 
-- **[Docker](/docs/getting-started/docker/)** — the standard route; works on any Docker host.
-- **[Home Assistant](/docs/getting-started/home-assistant/)** — easiest *if you already run Home Assistant*: one click from the add-on store.
-- **[Unraid](/docs/getting-started/unraid/)** — single appdata folder, Community Applications template.
+If this is your first time using Stache, follow these guides in order:
 
-Then head to **[Your first bin](/docs/getting-started/first-steps/)** to print labels and file your first item in about two minutes.
+1. [Understand how Stache works](/docs/concepts/) — learn about items, areas, and QR labels.
+2. [Choose an installation](/docs/getting-started/) — run Stache with Docker, Home Assistant, or Unraid.
+3. [Create your first bin](/docs/getting-started/first-steps/) — print a few labels and file an item.
+
+## Use your inventory
+
+- [Add and update items](/docs/using/adding-items/)
+- [Organize areas and QR labels](/docs/using/labels-areas/)
+- [Find something later](/docs/using/finding/)
+- [Track things that are out or lent](/docs/using/out-tracking/)
+- [Manage household members and private items](/docs/using/household/)
+- [Understand AI suggestions](/docs/using/ai/)
+
+## Printing and integrations
+
+- [Print QR labels](/docs/printing/)
+- [Connect Home Assistant sensors](/docs/extras/ha-sensors/)
+- [Connect an AI assistant with MCP](/docs/extras/mcp/)
+
+## Running Stache
+
+Stache runs as one application with an embedded database; you do not need a separate database server. Your inventory stays on the machine where you host it unless you choose to connect an external service. Built-in recognition and photo similarity can run locally. AI suggestions can be reviewed, edited, or ignored.
+
+For operational details, see [Backups and restore](/docs/extras/backups/), [Configuration](/docs/reference/configuration/), and [Security and access](/docs/reference/security/). If something is not working, start with [Troubleshooting and FAQ](/docs/reference/faq/).
+
+Stache is open source. Browse the [application repository](https://github.com/GraphicHealer/Stache) for releases, issues, and source code.

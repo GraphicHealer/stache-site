@@ -1,15 +1,18 @@
 ---
 title: Install with Docker
-description: Run Stache with Docker Compose — one container, no database service.
+description: Run Stache with Docker Compose using one container and one persistent data volume.
 ---
 
-Stache is a single container. The embedded SQLite database, photos, and AI model cache all live in one `data` volume — there's no database service to run alongside it.
+Docker is the general-purpose way to run Stache. The application, SQLite database, photos, and AI model cache are all stored together. You do not need a separate database container.
 
-## Requirements
+## What you need
 
-- Docker with the Compose plugin (`docker compose version`)
+- Docker Engine installed on the host.
+- The Docker Compose plugin. Confirm it is available with `docker compose version`.
 
-## Compose file
+## Create the Compose file
+
+Create a directory for Stache and save the following as `compose.yml`:
 
 ```yaml
 services:
@@ -33,39 +36,50 @@ volumes:
   data:
 ```
 
-## Start
+The named `data` volume is important: it keeps your inventory when the container is updated or recreated. The `TZ` setting controls the time zone used for scheduled digests.
+
+## Start Stache
+
+From the directory containing `compose.yml`, run:
 
 ```sh
 docker compose pull
 docker compose up -d
 ```
 
-Open `http://<host>:8080`, create the first household account, then head to **Labels** to print your first batch.
+Open `http://<host>:8080`, replacing `<host>` with the address of your Docker machine. Create the first household account, then open **Labels** to print your first batch of QR labels.
 
-Verify it's healthy:
+You can check that the application is responding with:
 
 ```sh
 curl localhost:8080/api/health
 ```
 
-## Memory
+## Plan for memory use
 
-The app idles around **200 MB**. Photo-similarity search (CLIP) loads lazily on the first photo upload or search — once warm the app sits around **450–550 MB**. The built-in AI model downloads once into the data volume; on very small hosts set `STACHE_ML_LEVEL=0` to disable ML entirely (`STACHE_NO_ML=1` is a legacy alias). Everything else keeps working.
+The application uses roughly **200 MB** while idle in the documented setup. Photo-similarity search (CLIP) loads lazily when first needed; once warm, memory use is around **450–550 MB**. The selected built-in AI model uses additional memory and downloads into the persistent data volume.
 
-## One caveat on plain HTTP
+On a very small host, set `STACHE_ML_LEVEL=0` to disable machine learning entirely. The older `STACHE_NO_ML=1` setting is also supported. Adding items, organizing areas, and ordinary text search continue to work.
 
-The live camera viewfinder, clipboard copy buttons, and offline PWA features need a [secure context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts) — `localhost` counts, `http://192.168.x.x` does not. Over `http://<lan-ip>:8080` the app still works (photo capture falls back to the file picker), but for the full experience front it with HTTPS: a reverse proxy like Caddy or Nginx Proxy Manager, a Tailscale cert, or your Home Assistant ingress URL.
+## Understand the plain HTTP limitation
 
-If you do proxy it, also set `STACHE_BASE_URL` (and `STACHE_TRUST_PROXY=1` so client IPs survive the hop) — see [Configuration](/docs/reference/configuration/).
+The live camera viewfinder, clipboard copy buttons, and offline PWA features require a [secure browser context](https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts). Localhost qualifies, but a plain LAN address such as `http://192.168.x.x` does not.
 
-## Updating
+Stache still works over `http://<lan-ip>:8080`; photo capture falls back to the browser's file picker. For the full experience, put Stache behind HTTPS using a reverse proxy such as Caddy or Nginx Proxy Manager, a Tailscale certificate, or your Home Assistant ingress URL.
+
+If you use a reverse proxy, also set `STACHE_BASE_URL` and `STACHE_TRUST_PROXY=1` so Stache can generate correct public links and use the forwarded client information. See [Configuration](/docs/reference/configuration/).
+
+## Update Stache
+
+From the directory containing your Compose file, run:
 
 ```sh
-docker compose pull && docker compose up -d
+docker compose pull
+docker compose up -d
 ```
 
-Migrations apply automatically at boot.
+Database migrations are applied automatically when the application starts.
 
-## Backups
+## Back up your inventory
 
-Everything lives in the `data` volume — backing up Stache is backing up that one folder. See [Backups](/docs/extras/backups/) for the built-in scheduler.
+The database, photos, and model cache are all stored in the `data` volume. Back up that persistent volume to protect your inventory. See [Backups and restore](/docs/extras/backups/) for the archive command and built-in backup options.

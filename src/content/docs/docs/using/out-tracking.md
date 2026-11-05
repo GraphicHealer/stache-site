@@ -1,33 +1,38 @@
 ---
-title: Out & lent tracking
-description: Mark things out or lent, get quiet reminders — never nagging badges.
+title: Tracking items that are out or lent
+description: Keep track of items that have left their usual storage place and return them with one tap.
 ---
 
-Things leave. Stache keeps a light touch on them so you remember where they went.
+Some things do not stay in their storage area. You might take a drill to a job, lend a tool to a neighbor, or use an item somewhere else in the house. Stache tracks those changes without turning them into a stream of overdue alerts.
 
-## Statuses
+## Understand item statuses
 
-Every item is **home** by default. It can also be:
+Items are marked **Home** by default. When an item leaves its usual place, you can change its status:
 
-- **out** — it's with you / out of its spot (the drill at a job)
-- **lent** — someone else has it
-- **unaccounted** — nobody's seen it in a while (items out 30+ days display this way)
-- **gone** — it's not coming back (hidden from normal views)
+| Status | Meaning |
+|---|---|
+| Home | The item is in its usual storage location. |
+| Out | You have taken it away from its usual place. |
+| Lent | Someone else has the item. |
+| Unaccounted | The item has been out for 30 days or more without being seen. |
+| Gone | The item is no longer expected to come back. Gone items are hidden from normal views. |
 
-**Put back** is one tap — the item's home area is remembered, so there's no "move it back" step.
+When you mark an item as Out or Lent, Stache remembers its home area. Choose **Put back** when it returns and Stache moves it back to that area automatically.
 
-## The Out page
+## See what is currently out
 
-**Out** shows everything currently out or lent — item, home area, how many days. No badges, no red overdue states. It's a quiet list, not an alarm.
+The **Out** page lists items marked Out or Lent, their usual storage area, and how long they have been away. It is intentionally a quiet list rather than a set of overdue warnings.
 
-<img src="/shots/out.webp" alt="The Out of place list with lent and out items" width="300" />
+<img src="/shots/out.webp" alt="The Out page listing items that are away or lent" width="300" />
 
-## Reminders (optional)
+## Set up optional reminders
 
-If you want a nudge, enable **Settings → Out reminders**: one bundled digest POST to any webhook — ntfy, Discord, Home Assistant — daily at a time you pick, or triggered externally. It's one message for everything, snoozable per item, never per-item pings.
+If you want reminders, open **Settings → Out reminders** and configure a digest. Stache can send one combined webhook message to services such as ntfy, Discord, or Home Assistant. You can choose a daily time or trigger the digest externally.
 
-Low stock and expiring warranties also fold into the digest and the inbox — surfaced quietly, never alerted.
+Reminders are grouped rather than sent as separate messages for every item. You can snooze reminders for individual items.
 
-## Home Assistant
+The digest and inbox can also include low-stock items and warranties that are approaching their expiration date. These are surfaced as useful reminders, not urgent alerts.
 
-The [HACS integration](/docs/extras/ha-sensors/) exposes items-out, unaccounted, low-stock, and warranty-expiring as sensors for real automations.
+## Connect Home Assistant
+
+The [Stache HACS integration](/docs/extras/ha-sensors/) provides sensors for items out, unaccounted items, low stock, and warranties that are expiring. You can use those sensors in your own Home Assistant dashboards and automations.

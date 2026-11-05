@@ -1,39 +1,43 @@
 ---
 title: Your first bin
-description: From a fresh install to your first labeled bin in about two minutes.
+description: Set up a labeled storage area and add your first item.
 ---
 
-Once Stache is running, this is the whole workflow. It takes about two minutes.
+Once Stache is running, you can start organizing things right away. This walkthrough takes about two minutes and covers the main Stache workflow.
 
 ## 1. Create the first account
 
-Open the app and sign up. The **first** account created becomes the household admin — after that, new accounts are added from inside the app (Settings → Household), not from the login screen.
+Open Stache and sign up. The first account becomes the household administrator. After setup, additional accounts are created from **Settings → Household**, not from the login screen.
 
-## 2. Print some labels
+## 2. Print a few QR labels
 
-Go to **Labels**, mint a batch (**Add N**) and print it. Each label is a random QR like `ST-K7QX9M2T` — it means nothing until you claim it, so you can print a whole sheet and stick them on things whenever.
+Open **Labels**, choose **Add N**, and create a batch of labels. Each label contains a random QR code, such as `ST-K7QX9M2T`. The code does not point to an area until you claim it, so you can print a sheet and attach labels as you organize.
 
-Any printer works — plain paper and scissors included. If you have a label printer (Zebra/ZPL over the network, a CUPS queue, or DYMO Connect) or die-cut label sheets for your regular printer, add it right on the **Labels** page (**+ Add printer**) — see [Printing labels](/docs/printing/) for the types and options.
+You can start with an ordinary printer, plain paper, and scissors. If you have a dedicated label printer, a DYMO printer, or die-cut label sheets, add the printer from **Labels → Add printer**. See [Printing labels](/docs/printing/) for supported printers and setup options.
 
 <img src="/shots-docs/labels.webp" alt="The Labels page showing a sheet of printable QR labels" width="300" />
 
-## 3. Claim a label
+## 3. Attach and claim a label
 
-Stick a label on a bin, shelf, or drawer. Scan it with your phone camera (or type the code) — Stache asks you to name the area and optionally photograph it. Done: that QR is now a scannable container.
+Attach a label to a bin, shelf, drawer, or other storage location. Scan it with your phone camera, or open the unused code from the Labels page. Stache asks you to name the area and optionally add a photo.
 
-Areas nest — a bin can live on a shelf in a closet in the garage. Scan the parent first to put new areas inside it, or rearrange later.
+Save the area. The QR code now opens that area whenever you scan it.
 
-## 4. Put things away
+Areas can be nested. For example, you can put a bin inside a shelf, a shelf inside a closet, and a closet inside a garage. Scan or open the parent area before creating a nested area, or reorganize the areas later.
 
-With the area open (scan its label anytime), tap the camera and snap photos of what goes in. Each photo is an item — you can add a name now, later, or never.
+## 4. Put something away
 
-Scan first, snap after; or snap first and file into the area after — both orders work.
+With the area open, tap the camera and take a photo of an item. Save it and Stache files it in that area. You can add a name now, later, or not at all.
 
-## 5. Find it later
+You can also take photos first and choose their storage area afterward. Both workflows are supported.
 
-- **Search** by name, description, or tag — fuzzy, typos tolerated.
-- **Scan the bin's label** to see its contents.
-- **Search by photo** — drop in a picture and Stache finds similar-looking items (see [Finding things](/docs/using/finding/)).
-- **Scan a product barcode** on filing and Stache looks up what it is.
+## 5. Find it again
 
-That's the loop. Print more labels as you need them.
+Try one of these ways to find the item you just added:
+
+- **Search** by its name, description, or tag. Search can still find partial names and common typos.
+- **Scan the bin label** to see the area's contents.
+- **Search with a photo** to find visually similar items. See [Finding things](/docs/using/finding/).
+- **Scan a product barcode** to look up product information when it is available.
+
+That's the basic workflow: label a place, photograph what goes there, and search or scan when you need to find it. Print more labels as your storage grows.

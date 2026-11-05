@@ -16,9 +16,11 @@
 ## Commands
 
 ```sh
-npm run dev       # local dev server
-npm run build     # static build -> dist/
+npm install
+npm run dev       # local development server
+npm run build     # static production build -> dist/
 npm run preview   # serve the production build
+npm run check:links
 ```
 
 ## Layout
@@ -29,22 +31,31 @@ npm run preview   # serve the production build
 | Landing styles | `src/styles/landing.css` |
 | Phone frame / feature section | `src/components/` |
 | Docs content | `src/content/docs/docs/**` (the doubled `docs` is intentional — it puts pages under `/docs/`) |
-| Phone screenshots | `public/shots/*.webp` — real captures from a seeded demo instance |
+| Phone screenshots | `public/shots/*.webp` |
+| Documentation screenshots | `public/shots-docs/*.webp` |
+| Screenshot capture script | `tools/shots.mjs` |
+| Screenshot contributor guide | `tools/SCREENSHOTS.md` |
 | Photo credits data | `src/data/credits.json` → rendered at `/credits/` |
 | Deploy workflow | `.github/workflows/deploy.yml` |
 
+## Screenshots
+
+The site uses real captures from a seeded Stache demo instance. To refresh them, use the existing Playwright script:
+
+```sh
+node tools/shots.mjs
+```
+
+Prepare a disposable demo instance first and set its URL, demo credentials, area ID, item ID, and Chromium executable as needed. **Never capture from a real household.** The full setup, environment variables, capture list, and review checklist are documented in [tools/SCREENSHOTS.md](tools/SCREENSHOTS.md).
+
 ## Configuration
 
-`astro.config.mjs` reads two env vars (set in `deploy.yml`):
+`astro.config.mjs` reads two environment variables (set in `deploy.yml`):
 
 - `SITE_URL` (default `https://stacheit.app`)
 - `BASE_PATH` (default `/`)
 
-The custom domain is set in repo Settings → Pages; keep `SITE_URL` in sync.
-
-## Regenerating screenshots
-
-`tools/shots.mjs` captures real screens from a seeded demo instance at a phone viewport and writes `public/shots/*.webp`. See the comment at the top of the file.
+The custom domain is set in repository Settings → Pages; keep `SITE_URL` in sync.
 
 ## Credits
 
@@ -52,4 +63,4 @@ Demo photos are CC0 / CC-BY / public-domain images from Wikimedia Commons — se
 
 ## License
 
-[AGPL-3.0](LICENSE) - forks must stay open source, with attribution.
+[AGPL-3.0](LICENSE) — forks must stay open source, with attribution.

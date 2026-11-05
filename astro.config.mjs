@@ -1,67 +1,47 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-
-// https://astro.build/config
 export default defineConfig({
-	site: process.env.SITE_URL ?? 'https://stacheit.app',
-	base: process.env.BASE_PATH ?? '/',
-	integrations: [
-		starlight({
-			title: 'Stache',
-			description: 'Self-hosted, photo-first home inventory. Where is my stuff?',
-			logo: {
-				src: './src/assets/icon.svg',
-				replacesTitle: false,
-			},
-			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/GraphicHealer/Stache' }],
-			customCss: ['./src/styles/starlight-custom.css'],
-			sidebar: [
-				{
-					label: 'Getting Started',
-					items: [
-						{ label: 'Choose how to run it', slug: 'docs/getting-started' },
-						{ label: 'Install with Docker', slug: 'docs/getting-started/docker' },
-						{ label: 'Install on Home Assistant', slug: 'docs/getting-started/home-assistant' },
-						{ label: 'Install on Unraid', slug: 'docs/getting-started/unraid' },
-						{ label: 'Your first bin', slug: 'docs/getting-started/first-steps' },
-					],
-				},
-				{
-					label: 'Using Stache',
-					items: [
-						{ label: 'Adding items', slug: 'docs/using/adding-items' },
-						{ label: 'Labels & areas', slug: 'docs/using/labels-areas' },
-						{ label: 'Finding things', slug: 'docs/using/finding' },
-						{ label: 'Out & lent tracking', slug: 'docs/using/out-tracking' },
-						{ label: 'Household members', slug: 'docs/using/household' },
-						{ label: 'AI suggestions', slug: 'docs/using/ai' },
-					],
-				},
-				{
-					label: 'Printing',
-					items: [
-						{ label: 'Overview', slug: 'docs/printing' },
-						{ label: 'Printer types', slug: 'docs/printing/printers' },
-						{ label: 'Sheet printing', slug: 'docs/printing/sheets' },
-					],
-				},
-				{
-					label: 'Optional extras',
-					items: [
-						{ label: 'Home Assistant sensors', slug: 'docs/extras/ha-sensors' },
-						{ label: 'Backups', slug: 'docs/extras/backups' },
-						{ label: 'MCP connections', slug: 'docs/extras/mcp' },
-					],
-				},
-				{
-					label: 'Reference',
-					items: [
-						{ label: 'Configuration', slug: 'docs/reference/configuration' },
-						{ label: 'FAQ', slug: 'docs/reference/faq' },
-					],
-				},
-			],
-		}),
-	],
+ site: process.env.SITE_URL ?? 'https://stacheit.app',
+ base: process.env.BASE_PATH ?? '/',
+ integrations: [starlight({
+  title: 'Stache',
+  description: 'A simple, self-hosted home for the things you own. Photograph it, put it away, find it later.',
+  logo: { src: './src/assets/icon.svg', replacesTitle: false },
+  social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/GraphicHealer/Stache' }],
+  customCss: ['./src/styles/starlight-custom.css'],
+  sidebar: [
+   { label: 'Introduction', items: [{ label: 'Documentation home', slug: 'docs' }, { label: 'How Stache works', slug: 'docs/concepts' }] },
+   { label: 'Get started', items: [
+    { label: 'Choose an installation', slug: 'docs/getting-started' },
+    { label: 'Docker', slug: 'docs/getting-started/docker' },
+    { label: 'Home Assistant', slug: 'docs/getting-started/home-assistant' },
+    { label: 'Unraid', slug: 'docs/getting-started/unraid' },
+    { label: 'Your first bin', slug: 'docs/getting-started/first-steps' },
+   ]},
+   { label: 'Using Stache', items: [
+    { label: 'Adding and updating items', slug: 'docs/using/adding-items' },
+    { label: 'Areas and QR labels', slug: 'docs/using/labels-areas' },
+    { label: 'Finding things', slug: 'docs/using/finding' },
+    { label: 'Tracking items that are out', slug: 'docs/using/out-tracking' },
+    { label: 'Household members and privacy', slug: 'docs/using/household' },
+    { label: 'AI suggestions', slug: 'docs/using/ai' },
+   ]},
+   { label: 'Printing', items: [
+    { label: 'Printing labels', slug: 'docs/printing' },
+    { label: 'Printer setup', slug: 'docs/printing/printers' },
+    { label: 'Printing on label sheets', slug: 'docs/printing/sheets' },
+   ]},
+   { label: 'Integrations', items: [
+    { label: 'Home Assistant sensors', slug: 'docs/extras/ha-sensors' },
+    { label: 'MCP connections', slug: 'docs/extras/mcp' },
+   ]},
+   { label: 'Administration', items: [
+    { label: 'Backups and restore', slug: 'docs/extras/backups' },
+    { label: 'Configuration reference', slug: 'docs/reference/configuration' },
+    { label: 'Security and access', slug: 'docs/reference/security' },
+    { label: 'Troubleshooting and FAQ', slug: 'docs/reference/faq' },
+   ]},
+  ],
+ })],
 });

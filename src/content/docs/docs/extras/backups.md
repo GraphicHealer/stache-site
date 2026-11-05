@@ -1,24 +1,54 @@
 ---
-title: Backups
-description: Everything lives in one folder — and there's a built-in scheduler too.
+title: Backups and restore
+description: Protect your inventory by backing up the Stache data directory, and learn how to restore it.
 ---
 
-Stache keeps **everything** in one place: the SQLite database, all photos, and the AI model cache live under `/data`. The simplest backup in the world is copying that folder.
+Your Stache data is stored together under `/data`: the SQLite database, item photos, downloaded AI models, and scheduled backups. A complete backup of this directory contains the information needed to move or restore your inventory.
 
-## The dead-simple way
+## Back up the data directory
 
-- **Docker:** back up the `data` volume (`docker run --rm -v stache_data:/data -v $PWD:/backup alpine tar czf /backup/stache.tar.gz -C /data .`)
-- **Home Assistant add-on:** the add-on data folder is covered by HA's own backup system
-- **Unraid:** back up `/mnt/user/appdata/stache`
+The exact host location depends on how you installed Stache:
 
-## Built-in scheduler (opt-in)
+| Installation | What to back up |
+|---|---|
+| Docker | The persistent Docker volume mounted at `/data`. |
+| Home Assistant add-on | The add-on's data directory, included in Home Assistant backups. |
+| Unraid | `/mnt/user/appdata/stache`. |
 
-Stache can write scheduled backups itself — **Settings → Backup**. Each one is a plaintext `manifest.json` plus a `payload.zip` under `/data/backups`. **Scheduled backups are not encrypted** — protect that folder like you'd protect the raw data. Encrypted backup downloads are available manually in the same screen.
+For a Docker named volume called `stache_data`, create an archive with:
 
-The interval is gated by the `backup_schedule` setting — it's off until you opt in.
+```sh
+docker run --rm -v stache_data:/data -v "$PWD":/backup alpine tar czf /backup/stache.tar.gz -C /data .
+```
 
-For a portable slice rather than a full backup, **Settings** also has JSON and CSV export downloads.
+Change the volume name if your Compose project uses a different one. Keep backups somewhere other than the same disk as the live data.
 
-## Restore
+## Schedule backups in Stache
 
-Place a backup where the app can stage it (`/data/restore-pending/`) and Stache swaps it in before the database opens, then restarts. Because it's a plain swap of a self-contained data dir, a manual restore is also just "replace the volume contents."
+Stache can create backups automatically. Open **Settings → Backup** and opt in by enabling the `backup_schedule` setting. The schedule is off until you turn it on.
+
+Scheduled backups are stored under `/data/backups`. Each backup contains a `manifest.json` and a `payload.zip`.
+
+:::caution[Scheduled backups are not encrypted]
+Scheduled backup files are **not encrypted**. Protect the backups directory as carefully as the live inventory data. If you need an encrypted copy, use the manual encrypted backup download in the same Settings screen.
+:::
+
+## Export selected information
+
+Settings also provides JSON and CSV export downloads. These are useful when you need a portable copy of inventory information, but they are not a replacement for a complete backup of the database and photos.
+
+## Restore a backup
+
+A restore can be staged in `/data/restore-pending/`. Stache checks for a staged backup before opening the database, replaces the current data with the restored data, and restarts.
+
+You can also restore manually by stopping Stache and replacing the contents of its persistent data directory with the contents of your backup. Keep a separate copy of the current data until you have confirmed the restored instance is working.
+
+## Move Stache to another host
+
+1. Stop Stache on the old host.
+2. Make a complete backup of its data directory.
+3. Copy the backup to the new host.
+4. Configure the new installation to mount the restored data at `/data`.
+5. Start Stache and confirm that your items and photos are present.
+
+See [Configuration](/docs/reference/configuration/) for data directory settings.

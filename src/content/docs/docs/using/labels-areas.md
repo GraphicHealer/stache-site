@@ -1,42 +1,64 @@
 ---
-title: Labels & areas
-description: Areas are containers — rooms, shelves, bins — and QR labels point at them.
+title: Areas and QR labels
+description: Organize storage locations from rooms down to individual bins, then use QR labels to open them quickly.
 ---
 
-In Stache, an **area** is a container: a room, a closet, a shelf, a bin, a drawer. Areas nest as deep as you like — a bin on a shelf in a closet in the garage.
+An **area** is a place where you keep things. It can represent a room, closet, shelf, drawer, or storage bin. Areas can contain other areas, so you can describe your storage as simply or as precisely as you like.
 
-Only areas get QR labels. Items are just photos with optional names — there's no per-item labeling step.
+For example, you might organize a garage as Garage → Shelving unit → Top shelf → Fasteners. You can begin with just Garage and add more detail over time.
 
-## How labels work
+Only areas have QR labels. Items are stored inside areas and do not need their own labels.
 
-Labels are random codes like `ST-K7QX9M2T`, minted on the **Labels** page in batches of whatever size you need. They're meaningless until assigned, so nothing goes to waste.
+## Create and assign a QR label
 
-- **Claim a label** — scan an unclaimed QR (or open it from Labels). Give the area a name and optionally a photo. It's now a scannable container.
-- **Use a label** — scan it anytime to open the area: see what's inside, set it as the current filing target, or stocktake it.
-- **More than one code** — codes and bins are separate things. Assign extra codes to the same area (spares, a code on each face of a crate), unassign ones you want back, and delete unclaimed codes you won't use. The first code assigned becomes the area's primary — reprints always print that one. Asking a code-less bin to print a QR mints and assigns one automatically.
+Labels are random codes, such as `ST-K7QX9M2T`. Create a batch from the **Labels** page with **Add N**, then print them. A code is not connected to an area until you assign it.
 
-## Editing an area
+1. Attach an unused label to a bin, shelf, or other storage location.
+2. Scan the QR code, or open the unused code from the Labels page.
+3. Give the area a name. You can also add a photo.
+4. Save. Scanning the label now opens that area.
 
-Tap the pencil on an area's header to edit it. Besides the name there are two optional fields:
+You can print labels before deciding exactly where they will go, then assign them as you organize. Unused labels can be claimed later.
 
-- **Category** — a grouping like "Christmas" or "Electronics". It prints as the third line on the area's label.
-- **Tags** — free-form, searchable, not printed. Same idea as item tags, but for containers.
+<img src="/shots-docs/browse.webp" alt="The Browse view showing areas and labeled containers" width="300" />
 
-## Printing
+## Assign more than one label to an area
 
-**Labels** handles everything: mint codes (**Add N**), see what's unclaimed (with printed badges), and print. Select codes and hit **Print** — pick a printer and copies. The **Claimed labels** button renders a reprint sheet of every code currently in use.
+A physical container can have multiple QR codes. This is useful for a large crate that needs a label on more than one side, or when you want a spare.
 
-Stache prints to Zebra/ZPL and older Zebra firmware over the network, CUPS queues, DYMO LabelWriters (via DYMO Connect), plain browser printing to any OS printer, and die-cut sheet layouts on Letter/A4 — with four-sided margins, exact previews, and saved custom sheet presets. See **[Printing labels](/docs/printing/)** for setup.
+- Assign additional codes to the same area.
+- Unassign a code when you want to use it somewhere else.
+- Delete unused codes you no longer need.
+- The first code assigned to an area becomes its primary label. Reprints use that code.
+- If you print a QR code for an area that does not have one, Stache creates and assigns one automatically.
 
-<img src="/shots-docs/browse.webp" alt="The Areas browse view showing labeled containers" width="300" />
+## Add information to an area
 
-## Moving things around
+Open an area's page and select the pencil icon in its header to edit it.
 
-- **Move an item** to a different area anytime — it's an undoable event like everything else.
-- **Multi-select** on Browse or inside a bin: tap cards to select them (there's a select-all too), and the sticky selection bar offers **Move into…** for nesting areas, or **Move…** for relocating items in bulk. Browse can also print labels for the selected areas straight from the bar.
-- **Nest an area** under another (a bin into a closet) from the selection bar, by scanning the parent before claiming, or by editing the area later.
-- Areas track item counts across their whole subtree, so a closet page shows everything inside it at every depth.
+- **Name** identifies the location.
+- **Category** is an optional grouping, such as Christmas or Electronics. It appears as the third line on the printed area label.
+- **Tags** are optional searchable words for the container. They are not printed.
 
-## Stocktake
+## Print and reprint labels
 
-Open an area and run a stocktake: tick off what you see, get a review step at the end (counts + optional mark-missing). Progress persists if you get interrupted.
+The **Labels** page is where you create codes, see which ones are unused, and print. Select the codes you want and choose **Print** to select a printer and number of copies. Use **Claimed labels** to create a reprint sheet for codes already assigned to areas.
+
+Stache supports Zebra/ZPL network printers, older Zebra firmware, CUPS queues, DYMO Connect, ordinary browser printing, and die-cut Letter/A4 label sheets. See [Printing labels](/docs/printing/) for printer setup and sheet options.
+
+## Move and reorganize areas
+
+You can reorganize storage without recreating items or labels.
+
+- Move an item to another area. The move is recorded and can be undone.
+- On Browse or inside an area, select multiple cards and use the selection bar to move items in bulk.
+- The selection bar can also move an area inside another area. You can alternatively scan the parent area before claiming a new label, or edit the area later.
+- From Browse, you can print labels for selected areas directly from the selection bar.
+
+Area item counts include everything in nested areas. A closet's count therefore includes items stored in the shelves and bins inside it.
+
+## Take stock of an area
+
+Open an area and start a stocktake to check what is physically there. Mark the items you can see, then review the results. The review shows counts and lets you optionally mark items as missing.
+
+Your progress is saved while you work, so you can leave and return if a stocktake is interrupted.
