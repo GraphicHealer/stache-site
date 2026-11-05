@@ -39,6 +39,14 @@ export default defineConfig({
 					],
 				},
 				{
+					label: 'Printing',
+					items: [
+						{ label: 'Overview', slug: 'docs/printing' },
+						{ label: 'Printer types', slug: 'docs/printing/printers' },
+						{ label: 'Sheet printing', slug: 'docs/printing/sheets' },
+					],
+				},
+				{
 					label: 'Optional extras',
 					items: [
 						{ label: 'Home Assistant sensors', slug: 'docs/extras/ha-sensors' },

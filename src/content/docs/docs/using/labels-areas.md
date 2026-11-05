@@ -24,14 +24,9 @@ Tap the pencil on an area's header to edit it. Besides the name there are two op
 
 ## Printing
 
-**Labels** handles everything: mint codes (**Add N**), see what's unclaimed (with printed badges), and print. Select codes and hit **Print** to open the print dialog — pick a printer and copies. The **Claimed labels** button renders a reprint sheet of every code currently in use.
+**Labels** handles everything: mint codes (**Add N**), see what's unclaimed (with printed badges), and print. Select codes and hit **Print** — pick a printer and copies. The **Claimed labels** button renders a reprint sheet of every code currently in use.
 
-Each printer is configured with a **media type**:
-
-- **Label stock** — Zebra/ZPL over the network, CUPS queues, or DYMO Connect. Label size is set in mm; on supported Zebra printers, **Read values** probes the loaded stock size for you. Plain paper + scissors works fine too.
-- **Sheet** — die-cut label sheets on a regular page printer, laid out at true size with a live preview. Presets cover Avery 5160/5161/5163/5167/5120 and L7651, plus custom grids.
-
-Set a **default printer** and the print dialog preselects it everywhere — bin pages included.
+Stache prints to Zebra/ZPL and older Zebra firmware over the network, CUPS queues, DYMO LabelWriters (via DYMO Connect), plain browser printing to any OS printer, and die-cut sheet layouts on Letter/A4 — with four-sided margins, exact previews, and saved custom sheet presets. See **[Printing labels](/docs/printing/)** for setup.
 
 <img src="/shots-docs/browse.webp" alt="The Areas browse view showing labeled containers" width="300" />
 
