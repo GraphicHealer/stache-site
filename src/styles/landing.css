@@ -370,3 +370,23 @@ html.js .reveal.visible {
 	.feature-copy p { max-width: none; }
 	.hero { min-height: 80vh; }
 }
+
+/* ---------- light mode ---------- */
+@media (prefers-color-scheme: light) {
+	:root {
+		--bg: #f6f6f7;
+		--bg-soft: #eceef2;
+		--bg-card: #ffffff;
+		--ink: #1a1c20;
+		--ink-dim: #5b6370;
+		--accent: #b57708;
+		--accent-soft: rgba(181, 119, 8, 0.12);
+		--line: rgba(0, 0, 0, 0.12);
+	}
+	.top-nav a:hover { background: rgba(0, 0, 0, 0.05); }
+	.btn-ghost {
+		border: 1px solid var(--line);
+		background: rgba(0, 0, 0, 0.03);
+	}
+	.btn-ghost:hover { background: rgba(0, 0, 0, 0.07); }
+}
