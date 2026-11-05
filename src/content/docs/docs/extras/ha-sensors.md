@@ -1,6 +1,6 @@
 ---
-title: Home Assistant sensors
-description: Bring Stache inventory counts into Home Assistant dashboards and automations.
+title: Home Assistant
+description: Bring Stache inventory counts into Home Assistant, plus services that search and manage items.
 ---
 
 The [Stache HACS integration](https://github.com/GraphicHealer/stache-ha) makes selected inventory information available as Home Assistant sensors. You can use the sensors in dashboards, automations, and notifications.
@@ -40,6 +40,40 @@ The integration polls Stache every 2 minutes by default. Change the interval in 
 
 All shared household items are included. Private items are never exposed. If the stored token is rejected, Home Assistant creates a repair issue asking you to provide a fresh one.
 
+## Enable the services
+
+Sensors only need the webhook token. For **write access and search from automations**, the integration uses a separate **API token**:
+
+1. In Stache, open **Settings → API tokens**.
+2. Create a token - name it (e.g., *Home Assistant*) and pick **Read + write** or **Read only**.
+3. In Home Assistant, open the Stache integration's **⋮ → Reconfigure** and paste the token. (New installs can paste it during initial setup.)
+
+The services appear under `stache.*` and return response data automations can use:
+
+| Service | What it does |
+|---|---|
+| `stache.search` | Search shared items - returns `items` |
+| `stache.add_item` | File a new item - `area_id`/`area_label`/`area_name`, optional `name`, `description`, `quantity`, `barcode`, `tags`, and a photo via `photo_path` (allowlisted dir) or `photo_url` |
+| `stache.update_item` | Patch fields and/or status on an item |
+| `stache.set_status` | Set status to `home`, `out`, `lent`, `unaccounted`, or `gone` |
+| `stache.move_item` | Move an item to a different area |
+| `stache.resolve_label` | Resolve a QR label code to its area |
+
+Example - file an item from a dashboard button:
+
+```yaml
+action: stache.add_item
+data:
+  area_name: Garage
+  name: Spare battery
+  quantity: 2
+response_variable: result
+```
+
+Then `{{ result.item.id }}` refers to the new item. Writes go through the same event pipeline as the app - undo works in Stache as usual, and private items are never reachable through the token.
+
 ## Use the endpoints without HACS
 
 Stache also displays a ready-made REST sensor URL and a digest trigger URL in **Settings**. You can use these directly in your own Home Assistant REST sensors or automations without installing the HACS integration.
+
+For full programmatic access there is a versioned REST API at `/api/v1` (areas, items, labels, item create/patch/move) - the same surface the services above use. Authenticate any client with an **API token** from **Settings → API tokens** sent as `Authorization: Bearer <token>`.
