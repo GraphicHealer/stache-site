@@ -25,9 +25,16 @@ Marketing + docs site for [Stache](https://github.com/GraphicHealer/Stache)
   demo Stache instance, not mockups — regenerate with `tools/shots.mjs`
   (playwright-core + system chromium). Demo instance used
   `ghcr.io/graphichealer/stache` on :8181 with seeded areas/items; seed data +
-  stock photos live under `/tmp/stache-seed/` (ephemeral). Demo account is the
-  generic name **Alex** (demo@stache.local) — screenshots are public, never
-  seed a real name.
+  stock photos live under `/tmp/stache-seed/` (ephemeral). Demo accounts are
+  famous-moustache historical figures — **Salvador Dalí** (dali@stache.local,
+  admin) plus Nietzsche, Twain, Wyatt Earp — public figures only, never real
+  personal names.
+- Print-UI captures live in `tools/seed-print.mjs` + `tools/shots-print.mjs`:
+  seed a disposable instance (labels, TEST-NET `192.0.2.40` Zebra, saved sheet
+  preset), then capture with a safe public origin — `STACHE_DEMO_ORIGIN`
+  (default `https://demo.stacheit.app`) is proxied to the local app so banners
+  and QR payloads never show localhost/private IPs/tunnels. The demo origin
+  must be in `STACHE_TRUSTED_ORIGINS` while capturing. See `tools/SCREENSHOTS.md`.
 - Demo photos are Wikimedia Commons CC0/CC-BY/PD images — keep
   `src/data/credits.json` (rendered at `/credits/`) in sync if you swap them.
 - Docs copy: plain-language landing page; technical is OK in docs. Content was

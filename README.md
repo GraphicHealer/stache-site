@@ -33,20 +33,22 @@ npm run check:links
 | Docs content | `src/content/docs/docs/**` (the doubled `docs` is intentional — it puts pages under `/docs/`) |
 | Phone screenshots | `public/shots/*.webp` |
 | Documentation screenshots | `public/shots-docs/*.webp` |
-| Screenshot capture script | `tools/shots.mjs` |
+| Screenshot capture scripts | `tools/shots.mjs`, `tools/seed-print.mjs` + `tools/shots-print.mjs` (print UI) |
 | Screenshot contributor guide | `tools/SCREENSHOTS.md` |
 | Photo credits data | `src/data/credits.json` → rendered at `/credits/` |
 | Deploy workflow | `.github/workflows/deploy.yml` |
 
 ## Screenshots
 
-The site uses real captures from a seeded Stache demo instance. To refresh them, use the existing Playwright script:
+The site uses real captures from a seeded Stache demo instance. To refresh them, use the existing Playwright scripts:
 
 ```sh
-node tools/shots.mjs
+node tools/shots.mjs          # landing + general docs shots
+node tools/seed-print.mjs     # seed a disposable instance for print-UI shots
+node tools/shots-print.mjs    # Labels/print-UI captures (safe demo origin)
 ```
 
-Prepare a disposable demo instance first and set its URL, demo credentials, area ID, item ID, and Chromium executable as needed. **Never capture from a real household.** The full setup, environment variables, capture list, and review checklist are documented in [tools/SCREENSHOTS.md](tools/SCREENSHOTS.md).
+Prepare a disposable demo instance first and set its URL, demo credentials, area ID, item ID, and Chromium executable as needed. **Never capture from a real household** — captures must show a safe demo base URL (`demo.stacheit.app` via `STACHE_DEMO_ORIGIN`) and TEST-NET printer addresses, never localhost, private IPs, or tunnels. The full setup, environment variables, capture list, and review checklist are documented in [tools/SCREENSHOTS.md](tools/SCREENSHOTS.md).
 
 ## Configuration
 

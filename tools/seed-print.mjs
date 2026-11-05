@@ -62,7 +62,7 @@ if (!areas.find((a) => a.name === 'Shelf 2')) {
 const printers = (await call('GET', '/api/printers')).printers ?? [];
 if (!printers.find((p) => p.name === 'Zebra GX420d')) {
   await call('POST', '/api/printers', {
-    name: 'Zebra GX420d', type: 'zpl', host: '192.168.1.40', port: 9100, dpi: 203,
+    name: 'Zebra GX420d', type: 'zpl', host: '192.0.2.40', port: 9100, dpi: 203,
     label_w_mm: 57, label_h_mm: 32,
     top_offset_mm: 1, left_offset_mm: 1, right_offset_mm: 1, bottom_offset_mm: 1,
   });

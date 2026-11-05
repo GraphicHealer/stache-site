@@ -1,15 +1,22 @@
 # Documentation screenshot workflow
 
-This guide is for contributors and coding assistants maintaining the Stache website. The screenshots in the site are **real captures of the running application**, not hand-drawn mockups. Keep the existing capture script and seeded-demo workflow; update them only when the application routes or UI genuinely change.
+This guide is for contributors and coding assistants maintaining the Stache website. The screenshots in the site are **real captures of the running application**, not hand-drawn mockups. Keep the existing capture scripts and seeded-demo workflow; update them only when the application routes or UI genuinely change.
 
 ## What creates the screenshots
 
-Run `tools/shots.mjs` from the root of `stache-site`. It signs in to a seeded Stache instance using Playwright, visits a known set of routes at a phone-sized viewport, and saves WebP images.
+- `tools/shots.mjs` — the general capture script: landing-page and docs screenshots from a seeded instance.
+- `tools/seed-print.mjs` + `tools/shots-print.mjs` — the print-UI pipeline: seeds a disposable instance (accounts, labels, a configured Zebra printer, a saved sheet preset), then captures the Labels/print screens into `public/shots-docs/` (`labels`, `print-printers`, `print-margins`, `print-add`, `print-sheets`).
+
+Both sign in to a seeded Stache instance using Playwright, visit routes at a phone-sized viewport, and save WebP images.
 
 - `public/shots/` contains screenshots used by the marketing/landing page.
 - `public/shots-docs/` contains screenshots used by documentation pages.
-- The script uses a 390 × 844 viewport, device scale factor 2, and dark color scheme.
+- The scripts use a 390 × 844 viewport, device scale factor 2, and dark color scheme.
 - Screenshots are saved at WebP quality 82.
+
+### Safe demo URLs in captures
+
+`tools/shots-print.mjs` routes a **safe public demo origin** (`https://demo.stacheit.app`, override with `STACHE_DEMO_ORIGIN`) to the local instance via Playwright `route.fetch`/`fulfill`, so the banner and QR payloads in captures show a real, user-owned demo domain — never localhost, private IPs, or temporary tunnels. For sign-in to work, temporarily add the demo origin to the instance's `STACHE_TRUSTED_ORIGINS` (`.env`) and `docker compose up -d` to recreate; revert afterwards. Printer addresses should use TEST-NET ranges (e.g., `192.0.2.x`).
 
 The route lists and filenames are defined in the script. **Do not rename or remove a screenshot without searching the site for references to it.**
 

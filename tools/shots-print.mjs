@@ -4,21 +4,33 @@
 import { chromium } from 'playwright-core';
 import sharp from 'sharp';
 
+// DEMO_ORIGIN is the public address shown in captures (banner + QR payloads).
+// Requests to it are routed to the local instance, so QRs point at a safe
+// demo URL instead of localhost / private IPs / tunnels.
+const DEMO_ORIGIN = process.env.STACHE_DEMO_ORIGIN ?? 'https://demo.stacheit.app';
 const BASE = process.env.STACHE_URL ?? 'http://localhost:8080';
 const EMAIL = process.env.STACHE_EMAIL ?? 'dali@stache.local';
 const PASS = process.env.STACHE_PASS ?? 'demo-password-123';
 
 const browser = await chromium.launch({
   executablePath: process.env.CHROMIUM ?? '/usr/bin/chromium-browser',
-  args: ['--no-sandbox', '--disable-dev-shm-usage'],
+  args: ['--no-sandbox', '--disable-dev-shm-usage', '--ignore-certificate-errors'],
 });
 const ctx = await browser.newContext({
   viewport: { width: 390, height: 844 },
   deviceScaleFactor: 2,
   colorScheme: 'dark',
+  ignoreHTTPSErrors: true,
+});
+// Route the demo origin to the local instance.
+await ctx.route(`${DEMO_ORIGIN}/**`, async (route) => {
+  const u = new URL(route.request().url());
+  const res = await route.fetch({ url: `${BASE}${u.pathname}${u.search}` });
+  await route.fulfill({ response: res });
 });
 const page = await ctx.newPage();
-await page.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+const VIEW = DEMO_ORIGIN;
+await page.goto(`${VIEW}/login`, { waitUntil: 'networkidle' });
 await page.fill('input[placeholder="Email"]', EMAIL);
 await page.fill('input[placeholder="Password"]', PASS);
 await page.click('button[type="submit"], button:has-text("Sign in")');
@@ -31,10 +43,13 @@ const shoot = async (name) => {
   console.log('shot', `shots-docs/${name}.webp`);
 };
 
-await page.goto(`${BASE}/labels`, { waitUntil: 'networkidle' });
+await page.goto(`${VIEW}/labels`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(2000); // let the exact preview render settle
 
-// 1. Printer list + preview pane.
+// 1. Full Labels page top - banner, counts, preview, print controls.
+await shoot('labels');
+
+// 2. Printer list + preview pane (framed on the Printers section).
 await page.locator('text=Zebra GX420d').first().scrollIntoViewIfNeeded();
 await shoot('print-printers');
 
@@ -60,7 +75,7 @@ if (await addBtn.isVisible()) {
 }
 
 // 4. PC printer -> sheet media -> SheetPicker with saved presets.
-await page.goto(`${BASE}/labels`, { waitUntil: 'networkidle' });
+await page.goto(`${VIEW}/labels`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(1500);
 const pcEdit = page.getByRole('button', { name: 'Configure PC printing' });
 if (await pcEdit.isVisible()) {
