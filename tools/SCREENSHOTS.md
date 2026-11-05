@@ -17,7 +17,7 @@ The route lists and filenames are defined in the script. **Do not rename or remo
 
 Never point the script at a household's real inventory. Use a disposable, seeded demo instance with sample accounts, areas, labels, items with photos, an out/lent item, and an item in the trash.
 
-The script's defaults expect:
+The script connects to an already-running demo app; it does not create or seed the demo records itself. Its defaults expect:
 
 | Variable | Default | Purpose |
 |---|---|---|
@@ -28,18 +28,17 @@ The script's defaults expect:
 | `ITEM_ID` | empty | ID of an item with a photo |
 | `CHROMIUM` | `/usr/bin/chromium-browser` | Chromium executable |
 
-The current script expects the demo app to be reachable at `STACHE_URL`. Its comments show one example of starting a demo Compose project, but the exact seed data can be created through the app/API or supplied by an existing disposable seeded environment. Keep the IDs and credentials aligned with that environment.
+The script comments include an example of starting a demo Compose project. Seed the data through the app/API or use an existing disposable seeded environment. Keep the IDs and credentials aligned with that environment.
 
 ## Install capture dependencies
 
-From the site repository:
+From the site repository, install the dependencies declared by the project:
 
 ```sh
 npm install
-npm install --no-save playwright-core sharp
 ```
 
-Install Chromium on the machine and set `CHROMIUM` if its executable is not at the script's default path. The project does not need to add Playwright as a permanent runtime dependency just to build the static site.
+The project already declares `playwright-core` as a development dependency and `sharp` as a dependency. Install Chromium separately. If its executable is not at `/usr/bin/chromium-browser`, set `CHROMIUM` to the correct path. There is no need to install either Node package separately or add a second copy to `package.json`.
 
 ## Capture screenshots
 
@@ -55,19 +54,19 @@ CHROMIUM=/usr/bin/chromium \
 node tools/shots.mjs
 ```
 
-The script writes the screenshots directly into the two existing public directories. It currently captures:
+The example overrides the default Chromium path with `/usr/bin/chromium`. Change it to match the executable installed on your system.
+
+The script writes screenshots into the two existing public directories. It currently captures:
 
 **Landing page:** item, labels, area, search, settings/MCP, out, and trash.
 
 **Documentation:** labels, item, browse, and settings.
 
-Some routes depend on valid `AREA_ID` and `ITEM_ID` values. If those are missing, the script skips the route rather than producing a useful capture.
+Some routes depend on valid `AREA_ID` and `ITEM_ID` values. If those values are missing or invalid, the script skips the affected route.
 
 ## When to retake a screenshot
 
 Retake screenshots when a documented screen changes in a way readers would notice, a route or interaction changes, a screenshot is visibly stale, or a new guide needs a visual example.
-
-A sensible refresh process:
 
 1. Update the application to the version being documented.
 2. Rebuild or reseed the disposable demo so it contains the sample records the routes need.
