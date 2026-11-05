@@ -4,13 +4,18 @@ interface Props {
 	alt?: string;
 }
 const { src, alt = 'Stache app screenshot' } = Astro.props;
+// Every shot has a -light.webp variant for prefers-color-scheme swaps.
+const light = src?.replace('.webp', '-light.webp');
 ---
 
 <div class="phone" aria-hidden={src ? 'false' : 'true'}>
 	<div class="phone-island"></div>
 	<div class="phone-screen">
 		{src ? (
-			<img src={src} alt={alt} loading="lazy" decoding="async" />
+			<picture>
+				<source srcset={light} media="(prefers-color-scheme: light)" />
+				<img src={src} alt={alt} loading="lazy" decoding="async" />
+			</picture>
 		) : (
 			<div class="phone-placeholder">
 				<slot />
