@@ -11,7 +11,7 @@ You do not need to build a detailed catalog before Stache becomes useful. A phot
 
 ### Items are the things you keep track of
 
-An item represents something you own or want to remember. Every item has at least one photo. A name, description, quantity, tags, and purchase details are optional. You can keep several photos on one item, connect related items, and record details such as a serial number or warranty date.
+An item represents something you own or want to remember. Stache is photo-first - the fastest way to file something is a photo - but a photo is not mandatory: the API, CSV import, and JSON import can create items without one. A name, description, quantity, tags, and purchase details are optional too. You can keep several photos on one item, connect related items, and record details such as a serial number or warranty date.
 
 ### Areas describe where things belong
 

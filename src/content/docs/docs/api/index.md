@@ -5,8 +5,9 @@ description: Bearer-token REST API for integrations, scripts, and other apps.
 
 Stache exposes a versioned REST API at `/api/v1` for integrations - Home
 Assistant services, scripts, and other clients. Interactive reference:
-**[Swagger UI](/api/)** (opens in a new page - it can even talk to your
-local instance while you read).
+**[Swagger UI](/api/)** (opens in a new page). It's a read-only reference -
+Stache doesn't send CORS headers in production, so browsers on this page
+can't call your instance; scripts and Home Assistant talk to it directly.
 
 ## Authenticate
 
@@ -17,8 +18,17 @@ Create a token in **Settings → API tokens** (name + scope `read` or
 Authorization: Bearer <token>
 ```
 
-Tokens see **shared items only** - private items are never exposed. A
-`read` scope token gets 403 on writes.
+**Token security:**
+
+- API tokens are separate from browser sessions - they never log anyone in.
+- Each token has a scope (`read` or `read-write`), can be revoked
+  independently, and only ever sees **shared items** - private items are
+  never exposed to the REST API, full stop.
+- Tokens are shown once at creation and stored hashed - Stache can't
+  recover a lost token.
+- Treat tokens like passwords: store them somewhere safe, and prefer
+  `read` scope when the integration doesn't need to write. A leaked
+  read-write token should be revoked immediately.
 
 ## What's covered
 
