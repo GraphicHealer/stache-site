@@ -13,7 +13,7 @@ export default defineConfig({
   sidebar: [
    { label: 'Introduction', items: [{ label: 'Documentation home', slug: 'docs' }, { label: 'How Stache works', slug: 'docs/concepts' }] },
    { label: 'Get started', items: [
-    { label: 'Choose an installation', slug: 'docs/getting-started/index' },
+    { label: 'Choose an installation', slug: 'docs/getting-started' },
     { label: 'Docker', slug: 'docs/getting-started/docker' },
     { label: 'Home Assistant', slug: 'docs/getting-started/home-assistant' },
     { label: 'Unraid', slug: 'docs/getting-started/unraid' },
