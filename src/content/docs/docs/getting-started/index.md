@@ -1,6 +1,6 @@
 ---
 title: Choose an installation
- description: Choose the Stache installation that fits the server or home platform you already use.
+description: Choose the Stache installation that fits the server or home platform you already use.
 ---
 
 Stache is a self-contained application. Its database, photo storage, and AI models are included, so you do not need to install a separate database server or companion service.
