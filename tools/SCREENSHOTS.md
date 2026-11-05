@@ -42,7 +42,7 @@ The script connects to an already-running demo app; it does not create or seed t
 | Variable | Default | Purpose |
 |---|---|---|
 | `STACHE_URL` | `http://localhost:8181` | Demo app URL |
-| `STACHE_EMAIL` | `demo@stache.local` | Demo account email |
+| `STACHE_EMAIL` | `dali@stache.local` | Demo account email |
 | `STACHE_PASS` | `demo-password-123` | Demo account password |
 | `AREA_ID` | empty | ID of a labeled area |
 | `ITEM_ID` | empty | ID of an item with a photo |
@@ -66,7 +66,7 @@ Set the environment variables for the demo instance, then run:
 
 ```sh
 STACHE_URL=http://localhost:8181 \
-STACHE_EMAIL=demo@stache.local \
+STACHE_EMAIL=dali@stache.local \
 STACHE_PASS='demo-password-123' \
 AREA_ID='<seeded-area-id>' \
 ITEM_ID='<seeded-item-id>' \
