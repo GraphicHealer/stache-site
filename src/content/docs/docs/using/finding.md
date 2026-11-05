@@ -1,28 +1,32 @@
 ---
 title: Finding things
-description: Search by words, by barcode, or by photo — or just scan the bin.
+description: Find an item by words, a photo, its barcode, or the label on its container.
 ---
 
-Finding something is the whole point, so there are four ways in.
+Stache gives you several ways to find something, even when you do not remember its exact name.
 
-## Text search
+## Search by words
 
-Type what you remember. The search is exact **and** fuzzy — typos and half-remembered names still match names, descriptions, and tags. Filter by area (covers the whole subtree) or by tag.
+Enter anything you remember about the item. Stache searches names, descriptions, and tags. Search supports both exact and fuzzy matching, so a spelling mistake or an incomplete name can still find a match.
 
-<img src="/shots/search.webp" alt="Search results for 'drill' showing the matching item and where it lives" width="300" />
+You can narrow results by area or tag. Selecting an area also searches its nested areas, so a search of the garage can include items stored in its shelves and bins.
 
-## Photo search
+<img src="/shots/search.webp" alt="Search results for drill showing a matching item and its storage location" width="300" />
 
-Drop in a photo and Stache finds items that look like it — powered by local CLIP embeddings computed on your own hardware, nothing leaves the machine.
+## Search with a photo
 
-:::note
-CLIP loads lazily on first use and pushes memory from ~200 MB idle to ~450–550 MB warm. On small hosts you can turn it off with `STACHE_ML_LEVEL=0` (or the legacy `STACHE_NO_ML=1`); everything else keeps working.
-:::
+Choose or take a photo and Stache looks for items with a similar appearance. This feature uses CLIP, a model that converts images into searchable representations called embeddings. The processing runs locally on the Stache host; the photo is not sent to an external image-search service.
 
-## Barcode
+CLIP loads the first time it is needed. In the documented setup, memory use is roughly 200 MB while idle and 450–550 MB after the model has loaded. If your host has limited memory, set `STACHE_ML_LEVEL=0` (or the older `STACHE_NO_ML=1`) to disable machine-learning features. Ordinary inventory features continue to work.
 
-Scan a product barcode (camera, or a wedge scanner like a Zebra handheld — rapid keystrokes ending in Enter). Stache detects the code and does a free-tier lookup against Open*Facts databases; a miss just means "no info found" — it never blocks filing.
+## Look up a product barcode
 
-## Scan the bin
+Scan a product barcode with your phone camera or a handheld barcode scanner. Stache recognizes scanner input from devices that behave like a keyboard and send Enter after the code, including Zebra handheld scanners.
 
-Sometimes the fastest answer: scan the label on a shelf or bin and look at its contents — every nested level included.
+Stache checks the code against the free Open*Facts databases. If no product information is found, you can still save the item normally. A failed lookup does not prevent you from filing it.
+
+## Browse a container
+
+If you remember where you put something but not what you called it, scan the QR label on its shelf, drawer, or bin. Stache opens that area and shows its contents, including items in nested areas.
+
+This is often the quickest way to find something when you know its storage location.
