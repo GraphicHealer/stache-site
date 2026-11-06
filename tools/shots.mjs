@@ -35,7 +35,7 @@ const landing = [
   ['area', `/areas/${AREA_ID}`],
   ['search', '/search?q=drill'],
   ['mcp', '/settings/integrations', 'h2:text-is("Household connections")'],
-  ['out', '/out'],
+  ['out', '/inbox?tab=out'],
 ];
 // Doc illustrations -> public/shots-docs/
 const docs = [
