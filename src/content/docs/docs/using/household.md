@@ -9,7 +9,7 @@ Stache is designed for a shared household inventory. Items are **shared by defau
 
 The first person to create an account becomes the household administrator. After that, new accounts are created by someone who is already signed in:
 
-1. Open **Settings → Household**.
+1. Open **Settings → Household & Account**.
 2. Create an account for the person joining the household.
 3. Give that person their sign-in credentials.
 
@@ -17,7 +17,7 @@ Public registration is closed after the initial account is created. Household me
 
 <picture>
   <source srcset="/shots-docs/settings-household-light.webp" media="(prefers-color-scheme: light)" />
-  <img src="/shots-docs/settings-household.webp" alt="Stache settings showing household and connection options" width="300" />
+  <img src="/shots-docs/settings-household.webp" alt="Settings → Household & Account showing household members and the add-member form" width="300" />
 </picture>
 
 ## Make an item private

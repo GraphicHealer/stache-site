@@ -24,12 +24,16 @@ CLIP loads the first time it is needed. In the documented setup, memory use is r
 
 ## Look up a product barcode
 
-Scan a product barcode with your phone camera or a handheld barcode scanner. Stache recognizes scanner input from devices that behave like a keyboard and send Enter after the code, including Zebra handheld scanners.
+On the **Find** page, tap **Scan a barcode** and point the camera at a product barcode. Stache shows every item with that barcode, or `No matches for "…"` if you don't own one yet.
+
+A handheld barcode scanner works too. Stache recognizes scanner input from devices that behave like a keyboard and send Enter after the code, including Zebra handheld scanners, and runs the same barcode search.
+
+Items get their barcode when you photograph it: if a photo contains a barcode, the item page offers to attach it (see [Adding items](/docs/using/adding-items/)).
 
 Stache checks the code against the free Open*Facts databases. If no product information is found, you can still save the item normally. A failed lookup does not prevent you from filing it.
 
 ## Browse a container
 
-If you remember where you put something but not what you called it, scan the QR label on its shelf, drawer, or bin. Stache opens that area and shows its contents, including items in nested areas.
+If you remember where you put something but not what you called it, scan the QR label on its shelf, drawer, or bin, from the **Scan** camera (tap the **Open** chip) or your phone's own camera. Stache opens that area and shows its contents, including items in nested areas.
 
 This is often the quickest way to find something when you know its storage location.

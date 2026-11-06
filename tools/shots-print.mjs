@@ -1,6 +1,7 @@
 // Print-UI screenshots for the docs, dark AND light.
 // Dark keeps the canonical name (name.webp); light gets -light.webp.
 // Run the seeded instance (seed-print.mjs), then: node tools/shots-print.mjs
+// Labels page + Settings -> Printers (printer list, edit/add forms, PC sheets).
 // Env: STACHE_URL, STACHE_DEMO_ORIGIN, CHROMIUM, STACHE_EMAIL, STACHE_PASS.
 import { chromium } from 'playwright-core';
 import sharp from 'sharp';
@@ -21,17 +22,20 @@ const browser = await chromium.launch({
 for (const scheme of ['dark', 'light']) {
   const suffix = scheme === 'dark' ? '' : '-light';
   const ctx = await browser.newContext({
-    viewport: { width: 390, height: 844 },
-    deviceScaleFactor: 2,
+    viewport: { width: 393, height: 852 }, // iPhone 15 Pro
+    deviceScaleFactor: 3,
     colorScheme: scheme,
     ignoreHTTPSErrors: true,
   });
   // Route the demo origin to the local instance.
-  await ctx.route(`${DEMO_ORIGIN}/**`, async (route) => {
-    const u = new URL(route.request().url());
-    const res = await route.fetch({ url: `${BASE}${u.pathname}${u.search}` });
-    await route.fulfill({ response: res });
-  });
+  // Skipped when STACHE_URL is the demo origin itself (capturing the hosted demo).
+  if (BASE !== DEMO_ORIGIN) {
+    await ctx.route(`${DEMO_ORIGIN}/**`, async (route) => {
+      const u = new URL(route.request().url());
+      const res = await route.fetch({ url: `${BASE}${u.pathname}${u.search}` });
+      await route.fulfill({ response: res });
+    });
+  }
   const page = await ctx.newPage();
   const VIEW = DEMO_ORIGIN;
   await page.goto(`${VIEW}/login`, { waitUntil: 'networkidle' });
@@ -53,8 +57,9 @@ for (const scheme of ['dark', 'light']) {
   // 1. Full Labels page top - banner, counts, preview, print controls.
   await shoot('labels');
 
-  // 2. Printer list + preview pane (framed on the Printers section).
-  await page.locator('text=Zebra GX420d').first().scrollIntoViewIfNeeded();
+  // 2. Settings -> Printers: printer list + preview pane.
+  await page.goto(`${VIEW}/settings/printers`, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(1500);
   await shoot('print-printers');
 
   // 3. Zebra edit form - host/size/margin fields.
@@ -62,7 +67,8 @@ for (const scheme of ['dark', 'light']) {
   if (await zEdit.isVisible()) {
     await zEdit.click();
     await page.waitForTimeout(500);
-    await page.locator('text=Margins').first().scrollIntoViewIfNeeded();
+    await page.getByText('margins', { exact: false }).last()
+      .evaluate((el) => el.scrollIntoView({ block: 'center' }));
     await shoot('print-margins');
     await zEdit.click();
     await page.waitForTimeout(400);
@@ -79,7 +85,7 @@ for (const scheme of ['dark', 'light']) {
   }
 
   // 5. PC printer -> sheet media -> SheetPicker with saved presets.
-  await page.goto(`${VIEW}/labels`, { waitUntil: 'networkidle' });
+  await page.goto(`${VIEW}/settings/printers`, { waitUntil: 'networkidle' });
   await page.waitForTimeout(1500);
   const pcEdit = page.getByRole('button', { name: 'Configure PC printing' });
   if (await pcEdit.isVisible()) {

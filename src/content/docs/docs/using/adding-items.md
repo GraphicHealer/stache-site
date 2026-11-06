@@ -7,13 +7,15 @@ An item needs only one thing to get started: **a photo**. A name, description, q
 
 ## Add an item
 
-The quickest way to file something is to open its storage location first:
+Scanning a Stache label always means "open this area". To put things away:
 
-1. Scan the QR label on a bin, shelf, or other area. You can also browse to the area in Stache.
-2. Take a photo.
-3. Save the item. Stache places it in the area you opened.
+1. Point the **Scan** camera at the QR label on a bin, shelf, or other area. After a moment an **Open** chip with the area's name appears; tap it. (Scanning the label with your phone's own camera, or browsing to the area, works too.)
+2. Tap **File items here**. Stache returns to the camera with **Filing into** that area shown above the shutter.
+3. Take a photo. The item is filed in that area straight away, with **Undo** if you need it. Keep shooting to file more items in the same place; tap **×** on the badge when you are done.
 
-You can also take the photo first and choose an area afterward. This is useful when you are photographing several things before deciding where to store them.
+You can also take the photo first. With no filing area set, Stache keeps the photo waiting and the badge reads **Point at a label to file this**. The next label the camera sees files the photo in that area, without leaving the camera. You can also choose **Pick an area** from the list instead.
+
+If a photo contains a product barcode, Stache reads it and the item page asks **Found barcode … in a photo - same item?** Choose **Yes** to attach the barcode to the item.
 
 <picture>
   <source srcset="/shots-docs/item-light.webp" media="(prefers-color-scheme: light)" />
@@ -43,13 +45,13 @@ Stache can read a photographed receipt and split it into separate items. It can 
 
 When AI recognition is enabled, Stache processes new photos in the background and may suggest a name, description, and tags. Suggestions do not silently replace the item's saved details. You choose what to accept or edit.
 
-The **Review** queue brings together items that may need attention:
+The **Inbox** tab brings together items that may need attention:
 
 - Items that do not have a name yet.
 - Possible duplicates, which you can merge or keep separate.
 - Items where recognition did not finish, which you can retry.
 
-Review is an optional way to tidy up your inventory, not a required step. See [AI suggestions](/docs/using/ai/) to learn about local models, remote providers, and privacy.
+The Inbox is an optional way to tidy up your inventory, not a required step. See [AI suggestions](/docs/using/ai/) to learn about local models, remote providers, and privacy.
 
 ## Move items
 

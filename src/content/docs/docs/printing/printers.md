@@ -3,7 +3,7 @@ title: Printer setup
 description: Configure Zebra/ZPL, legacy Zebra, CUPS, DYMO Connect, and browser printing.
 ---
 
-Add a printer from **Labels → Add printer**. Each printer has a name, label dimensions, resolution, and margins. The connection fields depend on the printer type.
+Add a printer from **Settings → Printers → + Add printer**. Printing itself happens on the **Labels** page. Each printer has a name, label dimensions, resolution, and margins. The connection fields depend on the printer type.
 
 ## Settings shared by printers
 

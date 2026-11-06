@@ -23,7 +23,7 @@ After installation:
 
 1. Open `http://<your-host>:8080`, replacing `<your-host>` with the address of the machine running Stache. If you installed the Home Assistant add-on, you can also use its **Web UI** button.
 2. Create the first account. This account becomes the household administrator.
-3. Add other household members later from **Settings → Household**.
+3. Add other household members later from **Settings → Household & Account**.
 
 For the full camera experience, access Stache over HTTPS or through Home Assistant ingress. A plain HTTP LAN address still works, but the live camera viewfinder falls back to the browser's file picker.
 

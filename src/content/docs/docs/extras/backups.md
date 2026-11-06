@@ -1,12 +1,20 @@
 ---
 title: Backups and restore
 description: Protect your inventory by backing up the Stache data directory, and learn how to restore it.
----Your Stache data is stored together under `/data`: the SQLite database, item photos, downloaded AI models, and scheduled backups. A complete backup of this directory contains the information needed to move or restore your inventory.
+---
+
+Your Stache data is stored together under `/data`: the SQLite database, item photos, downloaded AI models, and scheduled backups. A complete backup of this directory contains the information needed to move or restore your inventory.
 
 <picture>
   <source srcset="/shots-docs/settings-backup-light.webp" media="(prefers-color-scheme: light)" />
-  <img src="/shots-docs/settings-backup.webp" alt="The Backup settings section showing download and schedule options" width="300" />
+  <img src="/shots-docs/settings-backup.webp" alt="Settings → Data & Backups showing the backup download and automatic backup options" width="300" />
 </picture>
+
+## Download a backup from the app
+
+Open **Settings → Data & Backups → Backups** and tap **Download backup**. You get one zip with the database, photos, and a readable manifest, restorable on a fresh install. Tick **Encrypt the backup** first to protect it with a passphrase.
+
+**Quick DB snapshot** downloads the database only. It is fast, but it is not a full backup because it leaves out photos.
 
 ## Back up the data directory
 
@@ -28,7 +36,7 @@ Change the volume name if your Compose project uses a different one. Keep backup
 
 ## Schedule backups in Stache
 
-Stache can create backups automatically. Open **Settings → Backup** and opt in by enabling the `backup_schedule` setting. The schedule is off until you turn it on.
+Stache can create backups automatically. Open **Settings → Data & Backups → Automatic backups**, tick **Back up automatically**, and tap **Save schedule**. The schedule is off until you turn it on.
 
 Scheduled backups are stored under `/data/backups`. Each backup contains a `manifest.json` and a `payload.zip`.
 
@@ -38,11 +46,13 @@ Scheduled backup files are **not encrypted**. Protect the backups directory as c
 
 ## Export selected information
 
-Settings also provides JSON and CSV export downloads. These are useful when you need a portable copy of inventory information, but they are not a replacement for a complete backup of the database and photos.
+**Settings → Data & Backups → Export / Import** provides JSON and CSV export downloads. These are useful when you need a portable copy of inventory information, but they are not a replacement for a complete backup of the database and photos.
 
 ## Restore a backup
 
-A restore can be staged in `/data/restore-pending/`. Stache checks for a staged backup before opening the database, replaces the current data with the restored data, and restarts.
+Open **Settings → Data & Backups → Restore**, tap **Restore from zip…**, and choose a backup zip. This replaces the whole inventory with the backup, and Stache restarts itself to finish.
+
+Behind the scenes, a restore is staged in `/data/restore-pending/`. Stache checks for a staged backup before opening the database, replaces the current data with the restored data, and restarts.
 
 You can also restore manually by stopping Stache and replacing the contents of its persistent data directory with the contents of your backup. Keep a separate copy of the current data until you have confirmed the restored instance is working.
 

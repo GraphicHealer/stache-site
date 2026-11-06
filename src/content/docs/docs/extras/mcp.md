@@ -7,19 +7,21 @@ Stache can make your inventory available to AI assistants through **MCP** (Model
 
 MCP is off until you create a connection. Stache has two kinds:
 
-- **AI connections** - yours. A personal connection can see the shared inventory *plus your own private items*. Anyone in the household can create one in **Settings → AI connections**.
-- **MCP connections** - shared integrations managed by an admin in **Settings → MCP connections**. These see *shared items only* - never anyone's private items.
+- **My personal connections** - yours. A personal connection can see the shared inventory *plus your own private items*. Anyone in the household can create one.
+- **Household connections** - shared integrations managed by an admin. These see *shared items only* - never anyone's private items.
+
+Both live in **Settings → Connections & Integrations**.
 
 Each connection can be revoked independently, at any time.
 
 <picture>
   <source srcset="/shots/mcp-light.webp" media="(prefers-color-scheme: light)" />
-  <img src="/shots/mcp.webp" alt="The AI connections settings showing a configured AI connection" width="300" />
+  <img src="/shots/mcp.webp" alt="Settings → Connections & Integrations showing a household connection with its MCP URL" width="300" />
 </picture>
 
 ## Create a personal connection
 
-1. Open **Settings → AI connections**.
+1. Open **Settings → Connections & Integrations → My personal connections**.
 2. Name the connection (for example, "Claude" or "ChatGPT").
 3. Choose the access level - **Read only** or **Read + write**.
 4. Stache shows the connection's **endpoint URL** and a **bearer token**. The token is shown once - store it like a password.
@@ -37,7 +39,7 @@ Changes made through MCP are recorded with an actor such as `mcp:<name>`. They f
 
 ## Shared integrations
 
-The admin-managed **MCP connections** are for integrations that belong to the whole household - Home Assistant, external scripts, or a shared assistant. They always see shared items only, regardless of who created them.
+The admin-managed **Household connections** are for integrations that belong to the whole household - Home Assistant, external scripts, or a shared assistant. They always see shared items only, regardless of who created them.
 
 Create a separate connection for each assistant or service so access can be revoked independently.
 

@@ -19,11 +19,11 @@ You can use the built-in models without configuring an outside AI service.
 - Suggest splitting a photo of several objects into separate items for you to review.
 - Create local image representations (CLIP embeddings) that make search-by-photo possible.
 
-Recognition runs in the background. You can continue adding and organizing items while it works. If a recognition attempt fails, the item appears in the Review queue, where you can retry it.
+Recognition runs in the background. You can continue adding and organizing items while it works. If a recognition attempt fails, the item appears in the **Inbox**, where you can retry it.
 
 ## Choose a built-in model
 
-Open **Settings → AI suggestions** to select a local model. Stache downloads the model into `/data/models` the first time it is needed. After the download, it runs on the Stache host without sending photos to an outside provider.
+Open **Settings → AI & Automation** to select a local model. Stache downloads the model into `/data/models` the first time it is needed. After the download, it runs on the Stache host without sending photos to an outside provider.
 
 | Model | Download size (approx.) | What to expect |
 |---|---:|---|
@@ -37,7 +37,7 @@ Changing models removes the old model shortly after the replacement is ready. Th
 
 You can also connect an OpenAI-compatible `/chat/completions` endpoint that supports image input. Examples include Ollama, LM Studio, and hosted providers. This is optional; it can be useful if you already run a model that gives you better results.
 
-Configure the provider in **Settings → AI suggestions**. If the provider runs on the Docker host rather than inside the Stache container, the supplied Compose example maps `host.docker.internal` to the host. For example, an Ollama endpoint may be reachable at `http://host.docker.internal:11434/v1`.
+Configure the provider in **Settings → AI & Automation**. If the provider runs on the Docker host rather than inside the Stache container, the supplied Compose example maps `host.docker.internal` to the host. For example, an Ollama endpoint may be reachable at `http://host.docker.internal:11434/v1`.
 
 :::caution[Photos sent to remote providers]
 A remote provider receives the photos it processes, so those photos leave your Stache server. Private items are never sent to a configured remote AI provider.
@@ -45,7 +45,7 @@ A remote provider receives the photos it processes, so those photos leave your S
 
 ## Turn recognition off
 
-To disable machine-learning features, use **Settings → AI suggestions**, or set `STACHE_ML_LEVEL=0`. The older `STACHE_NO_ML=1` setting is also supported. Items, areas, labels, and ordinary text search continue to work.
+To disable machine-learning features, use **Settings → AI & Automation**, or set `STACHE_ML_LEVEL=0`. The older `STACHE_NO_ML=1` setting is also supported. Items, areas, labels, and ordinary text search continue to work.
 
 ## Understand memory use
 

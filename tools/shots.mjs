@@ -28,15 +28,14 @@ const browser = await chromium.launch({
 });
 
 // Landing-page phones -> public/shots/
-// Optional 3rd element: text to scroll into view before shooting.
+// Optional 3rd element: a Playwright selector scrolled to the top (below the header).
 const landing = [
   ['item', `/items/${ITEM_ID}`],
   ['labels', '/labels'],
   ['area', `/areas/${AREA_ID}`],
   ['search', '/search?q=drill'],
-  ['mcp', '/settings', 'API tokens'],
+  ['mcp', '/settings/integrations', 'h2:text-is("Household connections")'],
   ['out', '/out'],
-  ['trash', '/trash'],
 ];
 // Doc illustrations -> public/shots-docs/
 const docs = [
@@ -44,23 +43,29 @@ const docs = [
   ['item', `/items/${ITEM_ID}`],
   ['browse', '/browse'],
   ['settings', '/settings'],
+  ['settings-household', '/settings/household'],
+  ['settings-backup', '/settings/data', 'h2:text-is("Backups")'],
+  ['settings-out', '/settings/ai', 'h2:text-is("Out reminders")'],
 ];
 
 for (const scheme of ['dark', 'light']) {
   const suffix = scheme === 'dark' ? '' : '-light';
   const ctx = await browser.newContext({
-    viewport: { width: 390, height: 844 },
-    deviceScaleFactor: 2,
+    viewport: { width: 393, height: 852 }, // iPhone 15 Pro
+    deviceScaleFactor: 3,
     colorScheme: scheme,
     ignoreHTTPSErrors: true,
   });
   // Route the demo origin to the local instance so QRs/banners show a
   // safe public URL, never localhost/private IPs/tunnels.
-  await ctx.route(`${DEMO_ORIGIN}/**`, async (route) => {
-    const u = new URL(route.request().url());
-    const res = await route.fetch({ url: `${BASE}${u.pathname}${u.search}` });
-    await route.fulfill({ response: res });
-  });
+  // Skipped when STACHE_URL is the demo origin itself (capturing the hosted demo).
+  if (BASE !== DEMO_ORIGIN) {
+    await ctx.route(`${DEMO_ORIGIN}/**`, async (route) => {
+      const u = new URL(route.request().url());
+      const res = await route.fetch({ url: `${BASE}${u.pathname}${u.search}` });
+      await route.fulfill({ response: res });
+    });
+  }
   const page = await ctx.newPage();
   await page.goto(`${DEMO_ORIGIN}/login`, { waitUntil: 'networkidle' });
   await page.fill('input[placeholder="Email"]', EMAIL);
@@ -72,8 +77,19 @@ for (const scheme of ['dark', 'light']) {
     for (const [name, path, scrollTo] of list) {
       if (path.includes('undefined') || path.endsWith('//')) continue;
       await page.goto(DEMO_ORIGIN + path, { waitUntil: 'networkidle' });
-      if (scrollTo) await page.locator(`text=${scrollTo}`).first().scrollIntoViewIfNeeded();
+      if (scrollTo) {
+        await page.locator(scrollTo).first().evaluate((el) => {
+          el.scrollIntoView({ block: 'start' });
+          window.scrollBy(0, -80); // clear the sticky header
+        });
+      }
       await page.waitForTimeout(1200);
+      // Blur live secrets (webhook ?token=… URLs, per-connection MCP URLs).
+      await page.evaluate(() => {
+        for (const el of document.querySelectorAll('code, pre, input')) {
+          if (/token=|\/mcp\//.test(el.value || el.textContent || '')) el.style.filter = 'blur(6px)';
+        }
+      });
       const buf = await page.screenshot();
       await sharp(buf).webp({ quality: 82 }).toFile(`public/${dir}/${name}${suffix}.webp`);
       console.log('shot', `${dir}/${name}${suffix}.webp`);
