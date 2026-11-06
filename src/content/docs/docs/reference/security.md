@@ -7,7 +7,7 @@ Stache is self-hosted: you control the machine and storage that hold your invent
 
 ## Household accounts
 
-The first account created during setup becomes the household administrator. Public signup is closed after that; logged-in household members create additional accounts from **Settings → Household**.
+The first account created during setup becomes the household administrator. Public signup is closed after that; logged-in household members create additional accounts from **Settings → Household & Account**.
 
 Use individual accounts instead of sharing one login. This makes item history attributable to the person who made a change.
 

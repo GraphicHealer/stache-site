@@ -11,7 +11,7 @@ can't call your instance; scripts and Home Assistant talk to it directly.
 
 ## Authenticate
 
-Create a token in **Settings → API tokens** (name + scope `read` or
+Create a token in **Settings → Connections & Integrations → API tokens** (name + scope `read` or
 `read-write`, revocable). Send it as a bearer header on every request:
 
 ```

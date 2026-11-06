@@ -49,7 +49,7 @@ The application uses roughly 200 MB while idle in the documented setup. Photo si
 
 ### Can anyone create an account?
 
-The first account is created during initial setup. After that, a logged-in household member creates additional accounts from **Settings → Household**. Public registration is not left open.
+The first account is created during initial setup. After that, a logged-in household member creates additional accounts from **Settings → Household & Account**. Public registration is not left open.
 
 ### What can an MCP connection see?
 

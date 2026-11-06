@@ -3,7 +3,7 @@ title: Printing labels
 description: Choose a printer, configure label stock, preview the result, and print QR labels for your areas.
 ---
 
-Only **areas** receive QR labels in Stache. The **Labels** page brings the printing workflow together: create codes, configure printers, preview labels, and print them.
+Only **areas** receive QR labels in Stache. The **Labels** page is where you create codes, preview labels, and print them. Printers are set up under **Settings → Printers**.
 
 ## Choose a printer
 
@@ -21,7 +21,7 @@ See [Printer types](/docs/printing/printers/) for setup instructions and the set
 
 <picture>
   <source srcset="/shots-docs/print-printers-light.webp" media="(prefers-color-scheme: light)" />
-  <img src="/shots-docs/print-printers.webp" alt="The Labels page showing configured printers, the label preview, and the default-printer picker" width="300" />
+  <img src="/shots-docs/print-printers.webp" alt="Settings → Printers listing Print from this PC and a Zebra GX420d, with the Add printer button" width="300" />
 </picture>
 
 ## Choose rolls or sheets

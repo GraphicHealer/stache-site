@@ -30,7 +30,7 @@ The **Out** page lists items marked Out or Lent, their usual storage area, and h
 
 ## Set up optional reminders
 
-If you want reminders, open **Settings → Out reminders** and configure a digest. Stache can send one combined webhook message to services such as ntfy, Discord, or Home Assistant. You can choose a daily time or trigger the digest externally.
+If you want reminders, open **Settings → AI & Automation → Out reminders** and configure a digest. Stache can send one combined webhook message to services such as ntfy, Discord, or Home Assistant. You can choose a daily time or trigger the digest externally.
 
 Reminders are grouped rather than sent as separate messages for every item. You can snooze reminders for individual items.
 

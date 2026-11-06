@@ -24,12 +24,14 @@ Both sign in to a seeded Stache instance using Playwright, visit routes at a pho
 
 - `public/shots/` contains screenshots used by the marketing/landing page.
 - `public/shots-docs/` contains screenshots used by documentation pages.
-- The scripts use a 390 × 844 viewport, device scale factor 2, and dark color scheme.
+- The scripts use an iPhone 15 Pro viewport (393 × 852, device scale factor 3) in both dark and light color schemes.
 - Screenshots are saved at WebP quality 82.
 
 ### Safe demo URLs in captures
 
-`tools/shots-print.mjs` routes a **safe public demo origin** (`https://demo.stacheit.app`, override with `STACHE_DEMO_ORIGIN`) to the local instance via Playwright `route.fetch`/`fulfill`, so the banner and QR payloads in captures show a real, user-owned demo domain — never localhost, private IPs, or temporary tunnels. For sign-in to work, temporarily add the demo origin to the instance's `STACHE_TRUSTED_ORIGINS` (`.env`) and `docker compose up -d` to recreate; revert afterwards. Printer addresses should use TEST-NET ranges (e.g., `192.0.2.x`).
+**Hosted demo:** `https://demo.stacheit.app` is a disposable demo instance seeded with these accounts. To capture it directly, set `STACHE_URL=https://demo.stacheit.app`; the scripts then skip the proxy below. Live secrets on screen (webhook `?token=` URLs, per-connection MCP URLs) are blurred automatically by `tools/shots.mjs`.
+
+**Local instance:** the scripts route a **safe public demo origin** (`https://demo.stacheit.app`, override with `STACHE_DEMO_ORIGIN`) to the local instance via Playwright `route.fetch`/`fulfill`, so the banner and QR payloads in captures show a real, user-owned demo domain — never localhost, private IPs, or temporary tunnels. For sign-in to work, temporarily add the demo origin to the instance's `STACHE_TRUSTED_ORIGINS` (`.env`) and `docker compose up -d` to recreate; revert afterwards. Printer addresses should use TEST-NET ranges (e.g., `192.0.2.x`).
 
 The route lists and filenames are defined in the script. **Do not rename or remove a screenshot without searching the site for references to it.**
 
@@ -78,9 +80,11 @@ The example overrides the default Chromium path with `/usr/bin/chromium`. Change
 
 The script writes screenshots into the two existing public directories. It currently captures:
 
-**Landing page:** item, labels, area, search, settings/MCP, out, and trash.
+**Landing page:** item, labels, area, search, MCP (Settings → Connections & Integrations), and out.
 
-**Documentation:** labels, item, browse, and settings.
+**Documentation:** labels, item, browse, settings, settings-household, settings-backup (Data & Backups), and settings-out (AI & Automation → Out reminders).
+
+`tools/shots-print.mjs` captures labels plus the Settings → Printers screens (`print-printers`, `print-margins`, `print-add`, `print-sheets`).
 
 Some routes depend on valid `AREA_ID` and `ITEM_ID` values. If those values are missing or invalid, the script skips the affected route.
 
