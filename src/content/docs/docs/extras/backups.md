@@ -12,7 +12,7 @@ Your Stache data is stored together under `/data`: the SQLite database, item pho
 
 ## Download a backup from the app
 
-Open **Settings → Data & Backups → Backups** and tap **Download backup**. You get one zip with the database, photos, and a readable manifest, restorable on a fresh install. Tick **Encrypt the backup** first to protect it with a passphrase.
+Open **Settings → Data & Backups → Backups** and tap **Download backup**. You get one zip with the database, photos, and a readable manifest, restorable on a fresh install. Tick **Encrypt the backup** first to protect it with a passphrase — leave the passphrase blank to generate a random key, shown once after the download starts.
 
 **Quick DB snapshot** downloads the database only. It is fast, but it is not a full backup because it leaves out photos.
 
@@ -51,6 +51,10 @@ Scheduled backup files are **not encrypted**. Protect the backups directory as c
 ## Restore a backup
 
 Open **Settings → Data & Backups → Restore**, tap **Restore from zip…**, and choose a backup zip. This replaces the whole inventory with the backup, and Stache restarts itself to finish.
+
+:::note[Restoring onto a fresh install]
+A restore upload needs a signed-in session. On a fresh install there is no account yet, so **create any account first** — it gets replaced by the backup's own users when the restore completes.
+:::
 
 Behind the scenes, a restore is staged in `/data/restore-pending/`. Stache checks for a staged backup before opening the database, replaces the current data with the restored data, and restarts.
 
